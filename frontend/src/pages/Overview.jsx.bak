@@ -1,0 +1,440 @@
+
+import { useState, useEffect } from 'react'
+import { Card, CardContent, Typography, Grid, Box, useTheme } from '@mui/material'
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { getOverview } from '../api'
+import DataFilters from '../components/DataFilters'
+
+export default function Overview(){
+  const theme = useTheme();
+  const [overview, setOverview] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    let mounted = true;
+    const loadInitialData = async () => {
+      setIsLoading(true);
+      try {
+        console.log('Loading initial data...');
+        const params = new URLSearchParams();
+        const data = await getOverview(params);
+        console.log('Received initial data:', data);
+        
+        if (mounted) {
+          // Validate and transform the data
+          const validatedData = {
+            total_bots: Number(data.total_bots) || 0,
+            active_bots: Number(data.active_bots) || 0,
+            avg_success_rate: Number(data.avg_success_rate) || 0,
+            avg_execution_time_s: Number(data.avg_execution_time_s) || 0,
+            time_series: Array.isArray(data.time_series) ? data.time_series : [],
+            applied_filters: data.applied_filters || {}
+          };
+          
+          console.log('Setting validated initial data:', validatedData);
+          setOverview(validatedData);
+        }
+      } catch (error) {
+        console.error('Error loading initial data:', error);
+        if (mounted) {
+          setOverview({
+            total_bots: 0,
+            active_bots: 0,
+            avg_success_rate: 0,
+            avg_execution_time_s: 0,
+            time_series: [],
+            applied_filters: {}
+          });
+        }
+      } finally {
+        if (mounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+    
+    loadInitialData();
+    return () => {
+      mounted = false;
+    };
+  }, [])
+
+  if(!overview) return (
+    <Card sx={{p:2, mb:2}}>
+      <Typography>Loading overview...</Typography>
+    </Card>
+  )
+
+  if(isLoading) return (
+    <Card sx={{p:2, mb:2}}>
+      <Typography>Updating data...</Typography>
+    </Card>
+  )
+
+  const formatChartData = (data) => {
+    console.log('Formatting chart data:', data);
+    
+    if (!data || !data.time_series || !Array.isArray(data.time_series) || data.time_series.length === 0) {
+      console.log('No time series data available');
+      return [{
+        time: new Date().toLocaleDateString(),
+        running: 0,
+        success_rate: 0,
+        execution_time: 0,
+        noData: true
+      }];
+    }
+    
+    try {
+      // Sort the time series data by timestamp
+      const sortedData = [...data.time_series].sort((a, b) => {
+        const dateA = new Date(a.timestamp);
+        const dateB = new Date(b.timestamp);
+        if (isNaN(dateA.getTime())) throw new Error(`Invalid date: ${a.timestamp}`);
+        if (isNaN(dateB.getTime())) throw new Error(`Invalid date: ${b.timestamp}`);
+        return dateA - dateB;
+      });
+
+      console.log('Sorted time series data:', sortedData);
+
+      const formattedData = sortedData.map(point => {
+        const formattedPoint = {
+          time: new Date(point.timestamp).toLocaleDateString(),
+          running: Number(point.active_bots) || 0,
+          success_rate: Number(point.success_rate) || 0,
+          execution_time: Number(point.avg_execution_time) || 0,
+          noData: false
+        };
+        console.log('Formatted point:', formattedPoint);
+        return formattedPoint;
+      });
+
+      console.log('Final formatted data:', formattedData);
+      return formattedData;
+    } catch (error) {
+      console.error('Error formatting chart data:', error);
+      return [{
+        time: new Date().toLocaleDateString(),
+        running: 0,
+        success_rate: 0,
+        execution_time: 0,
+        noData: true
+      }];
+    }
+  };
+  };
+
+  const handleFilterChange = async (filters) => {
+    try {
+      setIsLoading(true);
+      console.log('Applying filters:', filters);
+      
+      const params = new URLSearchParams();
+      
+      // Convert and validate filters
+      if (filters.botType) {
+        params.append('bot_type', filters.botType.toLowerCase());
+        console.log('Added bot_type filter:', filters.botType);
+      }
+      if (filters.status) {
+        params.append('status', filters.status.toLowerCase());
+        console.log('Added status filter:', filters.status);
+      }
+      if (filters.priority) {
+        params.append('priority', filters.priority);
+        console.log('Added priority filter:', filters.priority);
+      }
+      if (filters.owner) {
+        params.append('owner', filters.owner);
+        console.log('Added owner filter:', filters.owner);
+      }
+
+      console.log('Making API call with params:', params.toString());
+      const newOverview = await getOverview(params);
+      console.log('Received new data:', newOverview);
+      
+      // Validate the response data
+      if (!newOverview || typeof newOverview !== 'object') {
+        throw new Error('Invalid response data');
+      }
+
+      // Ensure all required fields exist
+      const validatedData = {
+        total_bots: newOverview.total_bots || 0,
+        active_bots: newOverview.active_bots || 0,
+        avg_success_rate: newOverview.avg_success_rate || 0,
+        avg_execution_time_s: newOverview.avg_execution_time_s || 0,
+        time_series: Array.isArray(newOverview.time_series) ? newOverview.time_series : [],
+        applied_filters: newOverview.applied_filters || {}
+      };
+
+      setOverview(validatedData);
+      console.log('Updated overview with validated data:', validatedData);
+    } catch (error) {
+      console.error('Error applying filters:', error);
+      // Set default data structure on error
+      setOverview({
+        total_bots: 0,
+        active_bots: 0,
+        avg_success_rate: 0,
+        avg_execution_time_s: 0,
+        time_series: [],
+        applied_filters: {}
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <Box sx={{ p: 3 }}>
+      <Typography 
+        variant="h4" 
+        sx={{
+          mb: 3,
+          background: 'linear-gradient(45deg, #1a365d 30%, #2563eb 90%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          fontWeight: 'bold'
+        }}
+      >
+        Bot Monitoring Dashboard
+      </Typography>
+
+      <DataFilters onFilterChange={handleFilterChange} />
+
+      {/* Active Filters Summary */}
+      <Box 
+        sx={{ 
+          mb: 3, 
+          display: 'flex', 
+          flexWrap: 'wrap', 
+          gap: 1,
+          '& > *': {
+            borderRadius: 1,
+            px: 2,
+            py: 0.5,
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            color: '#1a365d',
+            fontSize: '0.875rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1
+          }
+        }}
+      >
+        {Object.entries(overview?.applied_filters || {}).map(([key, value]) => (
+          value && (
+            <Box key={key}>
+              {key}: <strong>{value}</strong>
+            </Box>
+          )
+        ))}
+      </Box>
+
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card sx={{
+            background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+            color: 'white',
+            transform: 'translateY(0)',
+            transition: 'transform 0.2s',
+            '&:hover': {
+              transform: 'translateY(-5px)'
+            }
+          }}>
+            <CardContent>
+              <Typography variant="h6" sx={{ opacity: 0.9 }}>Total Bots</Typography>
+              <Typography variant="h3">{overview.total_bots}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card sx={{
+            background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+            color: 'white',
+            transform: 'translateY(0)',
+            transition: 'transform 0.2s',
+            '&:hover': {
+              transform: 'translateY(-5px)'
+            }
+          }}>
+            <CardContent>
+              <Typography variant="h6" sx={{ opacity: 0.9 }}>Active Bots</Typography>
+              <Typography variant="h3">{overview.active_bots}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card sx={{
+            background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+            color: 'white',
+            transform: 'translateY(0)',
+            transition: 'transform 0.2s',
+            '&:hover': {
+              transform: 'translateY(-5px)'
+            }
+          }}>
+            <CardContent>
+              <Typography variant="h6" sx={{ opacity: 0.9 }}>Success Rate</Typography>
+              <Typography variant="h3">{overview.avg_success_rate}%</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card sx={{
+            background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+            color: 'white',
+            transform: 'translateY(0)',
+            transition: 'transform 0.2s',
+            '&:hover': {
+              transform: 'translateY(-5px)'
+            }
+          }}>
+            <CardContent>
+              <Typography variant="h6" sx={{ opacity: 0.9 }}>Avg Execution</Typography>
+              <Typography variant="h3">{Math.round(overview.avg_execution_time_s*100)/100}s</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Card sx={{
+            background: 'white',
+            boxShadow: theme.shadows[3],
+            borderRadius: 2,
+            p: 2
+          }}>
+            <Box>
+              <Typography variant="h6" sx={{ mb: 2, color: theme.palette.grey[800] }}>
+                Bot Metrics Over Time
+              </Typography>
+              <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap' }}>
+                <Typography 
+                  variant="caption" 
+                  sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center',
+                    color: '#3b82f6'
+                  }}
+                >
+                  ● Active Bots
+                </Typography>
+                <Typography 
+                  variant="caption" 
+                  sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center',
+                    color: '#10b981'
+                  }}
+                >
+                  ● Success Rate
+                </Typography>
+                <Typography 
+                  variant="caption" 
+                  sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center',
+                    color: '#f59e0b'
+                  }}
+                >
+                  ● Avg Execution Time
+                </Typography>
+              </Box>
+              {formatChartData(overview).every(d => d.noData) ? (
+                <Box 
+                  sx={{ 
+                    height: 300, 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    gap: 2,
+                    backgroundColor: 'rgba(0,0,0,0.02)',
+                    borderRadius: 1
+                  }}
+                >
+                  <Typography variant="body1" color="text.secondary">
+                    No data available for the selected filters
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    Try adjusting your filter criteria
+                  </Typography>
+                </Box>
+              ) : (
+                <ResponsiveContainer width="100%" height={300}>
+                  <AreaChart data={formatChartData(overview)}>
+                    <defs>
+                      <linearGradient id="colorRunning" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+                      </linearGradient>
+                      <linearGradient id="colorSuccess" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+                      </linearGradient>
+                      <linearGradient id="colorExecution" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.1}/>
+                      </linearGradient>
+                    </defs>
+                    <XAxis 
+                      dataKey="time" 
+                      tick={{ fill: theme.palette.grey[800] }}
+                      tickFormatter={(value) => new Date(value).toLocaleDateString()}
+                    />
+                    <YAxis yAxisId="left" tick={{ fill: theme.palette.grey[800] }} />
+                    <YAxis yAxisId="right" orientation="right" tick={{ fill: theme.palette.grey[800] }} />
+                    <Tooltip 
+                      contentStyle={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        borderRadius: '8px',
+                        border: 'none',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                      }}
+                      formatter={(value, name) => {
+                        if (name === 'Success Rate') return `${value.toFixed(1)}%`;
+                        if (name === 'Avg Execution Time') return `${value.toFixed(2)}s`;
+                        return value;
+                      }}
+                    />
+                    <Area 
+                      yAxisId="left"
+                      type="monotone" 
+                      dataKey="running" 
+                      name="Active Bots"
+                      stroke="#3b82f6" 
+                      fillOpacity={1}
+                      fill="url(#colorRunning)" 
+                    />
+                    <Area 
+                      yAxisId="right"
+                      type="monotone" 
+                      dataKey="success_rate" 
+                      name="Success Rate"
+                      stroke="#10b981" 
+                      fillOpacity={1}
+                      fill="url(#colorSuccess)" 
+                    />
+                    <Area 
+                      yAxisId="right"
+                      type="monotone" 
+                      dataKey="execution_time" 
+                      name="Avg Execution Time"
+                      stroke="#f59e0b" 
+                      fillOpacity={1}
+                      fill="url(#colorExecution)" 
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              )}
+            </Box>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
+  )
+}

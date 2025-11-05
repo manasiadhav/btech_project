@@ -1,0 +1,1116 @@
+import React, { useEffect, useState } from 'react';import React, {useEffect, useState} from 'react'
+
+import { getSummary, getPredictions, getBotAnalysis, getUsers } from '../api';import { getSummary, getPredictions, getBotAnalysis, getUsers } from '../api'
+
+import {import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Cell, Tooltip, CartesianGrid } from 'recharts'
+
+  Box,import { 
+
+  Paper,  Box, 
+
+  Typography,  Paper, 
+
+  Grid,  Typography, 
+
+  CircularProgress,  Grid, 
+
+  FormControl,  CircularProgress, 
+
+  InputLabel,  FormControl,
+
+  Select,  InputLabel,
+
+  MenuItem,  Select,
+
+  LinearProgress,  MenuItem,
+
+  Button,  LinearProgress,
+
+  Divider,  Button,
+
+  Chip,  Divider,
+
+  Card,  Table,
+
+  CardHeader,  TableBody,
+
+  CardContent,  TableCell,
+
+  Avatar  TableContainer,
+
+} from '@mui/material';  TableHead,
+
+import {  TableRow
+
+  ResponsiveContainer,} from '@mui/material'
+
+  BarChart,import ErrorIcon from '@mui/icons-material/Error'
+
+  Bar,import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+
+  XAxis,import WarningIcon from '@mui/icons-material/Warning'
+
+  YAxis,
+
+  CartesianGrid,import React, { useEffect, useState } from 'react';
+import { getSummary, getPredictions, getBotAnalysis, getUsers } from '../api';
+import {
+  ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell,
+  PieChart, Pie, Legend, LineChart, Line
+} from 'recharts';
+import {
+  Box,
+  Paper,
+  Typography,
+  Grid,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  LinearProgress,
+  Button,
+  Divider,
+  Chip,
+  Card,
+  CardHeader,
+  CardContent,
+  Avatar
+} from '@mui/material';
+import ErrorIcon from '@mui/icons-material/Error';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import WarningIcon from '@mui/icons-material/Warning';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import BugReportIcon from '@mui/icons-material/BugReport';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
+
+  Tooltip,const formatStatus = (status) => {
+
+  Cell,  return status
+
+  PieChart,    .toLowerCase()
+
+  Pie,    .split('_')
+
+  Legend,    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+
+  LineChart,    .join(' ')
+
+  Line}
+
+} from 'recharts';
+
+import ErrorIcon from '@mui/icons-material/Error';export default function Summary() {
+
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';  // Shared user state and data
+
+import WarningIcon from '@mui/icons-material/Warning';  const [users, setUsers] = useState([])
+
+import AssessmentIcon from '@mui/icons-material/Assessment';  const [selectedUser, setSelectedUser] = useState('')
+
+import BugReportIcon from '@mui/icons-material/BugReport';  const [error, setError] = useState(null)
+
+import TimelineIcon from '@mui/icons-material/Timeline';
+
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';  // Summary section states
+
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';  const [summaryData, setSummaryData] = useState(null)
+
+import PriorityHighIcon from '@mui/icons-material/PriorityHigh';  const [summaryLoading, setSummaryLoading] = useState(false)
+
+  const [lastFetchedUser, setLastFetchedUser] = useState(null)
+
+const COLORS = {
+
+  success: '#10b981',  // Analysis section states
+
+  error: '#ef4444',  const [bots, setBots] = useState([])
+
+  warning: '#f59e0b',  const [botAnalyses, setBotAnalyses] = useState({})
+
+  info: '#3b82f6',  const [analysisLoading, setAnalysisLoading] = useState(false)
+
+  purple: '#8b5cf6',
+
+  pink: '#ec4899'  // Effect to fetch users list
+
+};  useEffect(() => {
+
+    let mounted = true
+
+const CustomTooltip = ({ active, payload, label }) => {    const fetchUsers = async () => {
+
+  if (active && payload && payload.length) {      try {
+
+    return (        const usersList = await getUsers()
+
+      <Card sx={{ p: 1.5, bgcolor: 'rgba(0,0,0,0.8)', border: 'none' }}>        if (mounted) {
+
+        <Typography sx={{ color: 'white', mb: 1 }}>{label}</Typography>          setUsers(usersList)
+
+        {payload.map((entry, index) => (        }
+
+          <Box key={index} sx={{ color: entry.color || 'white', display: 'flex', alignItems: 'center', gap: 1 }}>      } catch (err) {
+
+            <div style={{ width: 10, height: 10, backgroundColor: entry.color }} />        console.error('Failed to fetch users:', err)
+
+            <Typography>      }
+
+              {entry.name}: {typeof entry.value === 'number' ? entry.value.toFixed(1) : entry.value}    }
+
+              {entry.unit || ''}    fetchUsers()
+
+            </Typography>    return () => mounted = false
+
+          </Box>  }, [])
+
+        ))}
+
+      </Card>  // Effect for Summary Section
+
+    );  useEffect(() => {
+
+  }    let mounted = true
+
+  return null;    setSummaryLoading(true)
+
+};    setError(null)
+
+
+
+export default function Summary() {    const fetchSummaryData = async () => {
+
+  const [users, setUsers] = useState([]);      try {
+
+  const [selectedUser, setSelectedUser] = useState('');        const res = await getSummary(selectedUser)
+
+  const [summaryData, setSummaryData] = useState(null);        if (!mounted) return
+
+  const [botAnalyses, setBotAnalyses] = useState({});
+
+  const [predictions, setPredictions] = useState([]);        if (res && res.summary) {
+
+  const [loading, setLoading] = useState(true);          setSummaryData(res.summary)
+
+  const [error, setError] = useState(null);        }
+
+      } catch (err) {
+
+  // Fetch users list on component mount        console.error('Failed to fetch summary:', err)
+
+  useEffect(() => {        if (mounted) {
+
+    const fetchUsers = async () => {          setError('Failed to load summary data')
+
+      try {        }
+
+        const usersList = await getUsers();      } finally {
+
+        setUsers(usersList);        if (mounted) setSummaryLoading(false)
+
+      } catch (err) {      }
+
+        console.error('Failed to fetch users:', err);    }
+
+        setError('Failed to load users');
+
+      }    fetchSummaryData()
+
+    };    return () => mounted = false
+
+    fetchUsers();  }, [selectedUser])
+
+  }, []);
+
+  // Effect for AI Analysis Section
+
+  // Fetch summary data and predictions when user selection changes  useEffect(() => {
+
+  useEffect(() => {    let mounted = true
+
+    const fetchData = async () => {    setAnalysisLoading(true)
+
+      setLoading(true);
+
+      setError(null);    const fetchAnalysisData = async () => {
+
+            try {
+
+      try {        const predictionsRes = await getPredictions()
+
+        // Fetch summary data and predictions in parallel        if (!mounted) return
+
+        const [summaryRes, predictionsRes] = await Promise.all([
+
+          getSummary(selectedUser),        let allBots = []
+
+          getPredictions()        if (predictionsRes && Array.isArray(predictionsRes.predictions)) {
+
+        ]);          allBots = predictionsRes.predictions.map(bot => ({
+
+            ...bot,
+
+        setSummaryData(summaryRes.summary);            userField: (bot.User || bot.owner || bot.CreatedBy || bot['Assigned User'])?.trim() || ''
+
+                  }))
+
+        // Filter predictions by selected user if needed        }
+
+        const filteredPredictions = selectedUser        
+
+          ? predictionsRes.predictions.filter(p =>         const filteredBots = !selectedUser ? allBots : allBots.filter(bot => 
+
+              p.owner?.toLowerCase() === selectedUser.toLowerCase())          bot.userField.toLowerCase() === selectedUser.toLowerCase()
+
+          : predictionsRes.predictions;        )
+
+        setPredictions(filteredPredictions);
+
+        setBots(filteredBots)
+
+        // Fetch analysis for each bot
+
+        const analyses = {};        const analyses = {}
+
+        await Promise.all(        await Promise.all(
+
+          filteredPredictions.map(async (bot) => {          filteredBots.map(async (bot) => {
+
+            try {            try {
+
+              const analysis = await getBotAnalysis(bot.bot_name);              const analysis = await getBotAnalysis(bot.bot_name)
+
+              analyses[bot.bot_name] = analysis;              if (mounted) {
+
+            } catch (err) {                analyses[bot.bot_name] = analysis
+
+              console.error(`Failed to fetch analysis for ${bot.bot_name}:`, err);              }
+
+            }            } catch (err) {
+
+          })              console.error(`Failed to fetch analysis for ${bot.bot_name}:`, err)
+
+        );            }
+
+        setBotAnalyses(analyses);          })
+
+        )
+
+      } catch (err) {
+
+        console.error('Failed to fetch data:', err);        if (mounted) {
+
+        setError('Failed to load summary data');          setBotAnalyses(analyses)
+
+      } finally {        }
+
+        setLoading(false);      } catch (err) {
+
+      }        console.error('Failed to fetch analysis data:', err)
+
+    };        if (mounted) {
+
+          setError('Failed to load AI analysis data')
+
+    fetchData();        }
+
+  }, [selectedUser]);      } finally {
+
+        if (mounted) setAnalysisLoading(false)
+
+  if (loading) {      }
+
+    return (    }
+
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+
+        <CircularProgress size={60} />    if (lastFetchedUser !== selectedUser) {
+
+      </Box>      fetchAnalysisData()
+
+    );      setLastFetchedUser(selectedUser)
+
+  }    }
+
+
+
+  if (error) {    return () => mounted = false
+
+    return (  }, [selectedUser, lastFetchedUser])
+
+      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="100vh">
+
+        <Typography color="error" variant="h6" gutterBottom>  if (!summaryData && summaryLoading) {
+
+          {error}    return (
+
+        </Typography>      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+
+        <Button         <CircularProgress size={60} />
+
+          variant="contained"       </Box>
+
+          color="primary"     )
+
+          onClick={() => window.location.reload()}  }
+
+          sx={{ mt: 2 }}
+
+        >  if (error) {
+
+          Retry    return (
+
+        </Button>      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="100vh">
+
+      </Box>        <Typography color="error" variant="h6" gutterBottom>
+
+    );          {error}
+
+  }        </Typography>
+
+        <Button 
+
+  return (          variant="contained" 
+
+    <Box sx={{ p: 3 }}>          color="primary" 
+
+      {/* Header with User Selection */}          onClick={() => window.location.reload()}
+
+      <Box sx={{ mb: 4 }}>          sx={{ mt: 2 }}
+
+        <Typography         >
+
+          variant="h4"           Retry
+
+          sx={{        </Button>
+
+            background: 'linear-gradient(45deg, #4f46e5 30%, #818cf8 90%)',      </Box>
+
+            WebkitBackgroundClip: 'text',    )
+
+            WebkitTextFillColor: 'transparent',  }
+
+            fontWeight: 'bold',
+
+            textAlign: 'center',  return (
+
+            mb: 3    <Box sx={{ p: 3 }}>
+
+          }}      {/* Header Section */}
+
+        >      <Box sx={{ mb: 4 }}>
+
+          AI Bot Analysis Dashboard        <Typography 
+
+        </Typography>          variant="h4" 
+
+                  sx={{
+
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>            background: 'linear-gradient(45deg, #4f46e5 30%, #818cf8 90%)',
+
+          <FormControl sx={{ width: '400px' }}>            WebkitBackgroundClip: 'text',
+
+            <InputLabel>Select User</InputLabel>            WebkitTextFillColor: 'transparent',
+
+            <Select            fontWeight: 'bold',
+
+              value={selectedUser}            textAlign: 'center',
+
+              onChange={(e) => setSelectedUser(e.target.value)}            mb: 3
+
+              label="Select User"          }}
+
+              sx={{ height: '56px' }}        >
+
+            >          Summary Analytics
+
+              <MenuItem value="">All Users</MenuItem>        </Typography>
+
+              {users.map(user => (        
+
+                <MenuItem key={user} value={user}>{user}</MenuItem>        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+
+              ))}          <FormControl sx={{ width: '400px' }}>
+
+            </Select>            <InputLabel sx={{ fontSize: '1.1rem' }}>Select User</InputLabel>
+
+          </FormControl>            <Select
+
+        </Box>              value={selectedUser}
+
+              onChange={(e) => setSelectedUser(e.target.value)}
+
+        {selectedUser && (              label="Select User"
+
+          <Typography               sx={{
+
+            variant="h6"                 height: '56px',
+
+            sx={{ textAlign: 'center', color: 'text.secondary', mb: 2 }}                fontSize: '1.1rem',
+
+          >                '& .MuiSelect-select': {
+
+            Showing analysis for: {selectedUser}                  padding: '14px'
+
+          </Typography>                }
+
+        )}              }}
+
+      </Box>            >
+
+              <MenuItem value="" sx={{ fontSize: '1.1rem' }}>All Users</MenuItem>
+
+      {/* Key Metrics Cards */}              {users.map(user => (
+
+      <Grid container spacing={3} sx={{ mb: 4 }}>                <MenuItem key={user} value={user} sx={{ fontSize: '1.1rem' }}>
+
+        <Grid item xs={12} md={2}>                  {user}
+
+          <Paper sx={{                 </MenuItem>
+
+            p: 3,               ))}
+
+            background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',            </Select>
+
+            color: 'white',          </FormControl>
+
+            height: '100%'        </Box>
+
+          }}>      </Box>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+
+              <AssessmentIcon sx={{ fontSize: 40 }} />      {/* Summary Cards */}
+
+              <Typography variant="h6">Total Runs</Typography>      <Grid container spacing={3} sx={{ mb: 4 }}>
+
+              <Typography variant="h4">{summaryData?.totalRuns || 0}</Typography>        <Grid item xs={12} sm={6} md={2}>
+
+            </Box>          <Paper sx={{ 
+
+          </Paper>            p: 3, 
+
+        </Grid>            background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+
+        <Grid item xs={12} md={2}>            color: 'white',
+
+          <Paper sx={{             textAlign: 'center'
+
+            p: 3,           }}>
+
+            background: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',            <Typography variant="h6">Total Runs</Typography>
+
+            color: 'white',            <Typography variant="h3">{summaryData?.totalRuns || 0}</Typography>
+
+            height: '100%'          </Paper>
+
+          }}>        </Grid>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>        <Grid item xs={12} sm={6} md={2}>
+
+              <BugReportIcon sx={{ fontSize: 40 }} />          <Paper sx={{ 
+
+              <Typography variant="h6">Failures</Typography>            p: 3, 
+
+              <Typography variant="h4">{summaryData?.totalFailures || 0}</Typography>            background: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
+
+            </Box>            color: 'white',
+
+          </Paper>            textAlign: 'center'
+
+        </Grid>          }}>
+
+        <Grid item xs={12} md={2}>            <Typography variant="h6">Total Failures</Typography>
+
+          <Paper sx={{             <Typography variant="h3">{summaryData?.totalFailures || 0}</Typography>
+
+            p: 3,           </Paper>
+
+            background: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',        </Grid>
+
+            color: 'white',        <Grid item xs={12} sm={6} md={2}>
+
+            height: '100%'          <Paper sx={{ 
+
+          }}>            p: 3, 
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>            background: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+
+              <CheckCircleIcon sx={{ fontSize: 40 }} />            color: 'white',
+
+              <Typography variant="h6">Success Rate</Typography>            textAlign: 'center'
+
+              <Typography variant="h4">{summaryData?.globalSuccessRate?.toFixed(1) || 0}%</Typography>          }}>
+
+            </Box>            <Typography variant="h6">Success Rate</Typography>
+
+          </Paper>            <Typography variant="h3">{(summaryData?.globalSuccessRate || 0).toFixed(1)}%</Typography>
+
+        </Grid>          </Paper>
+
+        <Grid item xs={12} md={2}>        </Grid>
+
+          <Paper sx={{         <Grid item xs={12} sm={6} md={2}>
+
+            p: 3,           <Paper sx={{ 
+
+            background: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',            p: 3, 
+
+            color: 'white',            background: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',
+
+            height: '100%'            color: 'white',
+
+          }}>            textAlign: 'center'
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>          }}>
+
+              <TimelineIcon sx={{ fontSize: 40 }} />            <Typography variant="h6">Avg Exec Time</Typography>
+
+              <Typography variant="h6">Avg Time</Typography>            <Typography variant="h3">{summaryData?.averageExecutionTime || 0}s</Typography>
+
+              <Typography variant="h4">{summaryData?.averageExecutionTime || 0}s</Typography>          </Paper>
+
+            </Box>        </Grid>
+
+          </Paper>        <Grid item xs={12} sm={6} md={2}>
+
+        </Grid>          <Paper sx={{ 
+
+        <Grid item xs={12} md={2}>            p: 3, 
+
+          <Paper sx={{             background: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+
+            p: 3,             color: 'white',
+
+            background: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',            textAlign: 'center'
+
+            color: 'white',          }}>
+
+            height: '100%'            <Typography variant="h6">Anomalies</Typography>
+
+          }}>            <Typography variant="h3">{summaryData?.anomalousBots || 0}</Typography>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>          </Paper>
+
+              <WarningIcon sx={{ fontSize: 40 }} />        </Grid>
+
+              <Typography variant="h6">Anomalies</Typography>        <Grid item xs={12} sm={6} md={2}>
+
+              <Typography variant="h4">{summaryData?.anomalousBots || 0}</Typography>          <Paper sx={{ 
+
+            </Box>            p: 3, 
+
+          </Paper>            background: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
+
+        </Grid>            color: 'white',
+
+        <Grid item xs={12} md={2}>            textAlign: 'center'
+
+          <Paper sx={{           }}>
+
+            p: 3,             <Typography variant="h6">Error Rate</Typography>
+
+            background: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',            <Typography variant="h3">{(summaryData?.averageErrorRate || 0).toFixed(1)}%</Typography>
+
+            color: 'white',          </Paper>
+
+            height: '100%'        </Grid>
+
+          }}>      </Grid>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+
+              <TrendingDownIcon sx={{ fontSize: 40 }} />      {/* Distribution Charts */}
+
+              <Typography variant="h6">Error Rate</Typography>      <Grid container spacing={3} sx={{ mb: 4 }}>
+
+              <Typography variant="h4">{summaryData?.averageErrorRate?.toFixed(1) || 0}%</Typography>        <Grid item xs={12} md={6}>
+
+            </Box>          <Paper sx={{ p: 3, bgcolor: 'background.paper' }}>
+
+          </Paper>            <Typography variant="h6" gutterBottom>Status Distribution</Typography>
+
+        </Grid>            <Box sx={{ height: 300 }}>
+
+      </Grid>              <ResponsiveContainer>
+
+                <BarChart
+
+      {/* Distribution Charts */}                  data={Object.entries(summaryData?.statusDistribution || {}).map(([name, value]) => ({
+
+      <Grid container spacing={3} sx={{ mb: 4 }}>                    name,
+
+        <Grid item xs={12} md={6}>                    value
+
+          <Paper sx={{ p: 3, height: '100%' }}>                  }))}
+
+            <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+
+              <AssessmentIcon /> Status Distribution                >
+
+            </Typography>                  <CartesianGrid strokeDasharray="3 3" />
+
+            <Box sx={{ height: 300 }}>                  <XAxis dataKey="name" />
+
+              <ResponsiveContainer>                  <YAxis />
+
+                <PieChart>                  <Tooltip />
+
+                  <Pie                  <Bar dataKey="value" fill="#3b82f6" />
+
+                    data={Object.entries(summaryData?.statusDistribution || {}).map(([name, value]) => ({                </BarChart>
+
+                      name,              </ResponsiveContainer>
+
+                      value            </Box>
+
+                    }))}          </Paper>
+
+                    cx="50%"        </Grid>
+
+                    cy="50%"        <Grid item xs={12} md={6}>
+
+                    innerRadius={60}          <Paper sx={{ p: 3, bgcolor: 'background.paper' }}>
+
+                    outerRadius={100}            <Typography variant="h6" gutterBottom>Anomaly Distribution</Typography>
+
+                    fill="#8884d8"            <Box sx={{ height: 300 }}>
+
+                    paddingAngle={1}              <ResponsiveContainer>
+
+                    dataKey="value"                <BarChart
+
+                  >                  data={Object.entries(summaryData?.anomalyDistribution || {}).map(([name, value]) => ({
+
+                    {Object.entries(summaryData?.statusDistribution || {}).map((entry, index) => (                    name,
+
+                      <Cell key={`cell-${index}`} fill={Object.values(COLORS)[index % Object.values(COLORS).length]} />                    value
+
+                    ))}                  }))}
+
+                  </Pie>                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+
+                  <Tooltip content={<CustomTooltip />} />                >
+
+                  <Legend />                  <CartesianGrid strokeDasharray="3 3" />
+
+                </PieChart>                  <XAxis dataKey="name" />
+
+              </ResponsiveContainer>                  <YAxis />
+
+            </Box>                  <Tooltip />
+
+          </Paper>                  <Bar dataKey="value">
+
+        </Grid>                    {(entry, index) => (
+
+        <Grid item xs={12} md={6}>                      <Cell key={`cell-${index}`} fill={entry.name === 'Anomalous' ? '#ef4444' : '#10b981'} />
+
+          <Paper sx={{ p: 3, height: '100%' }}>                    )}
+
+            <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>                  </Bar>
+
+              <WarningIcon /> Anomaly Distribution                </BarChart>
+
+            </Typography>              </ResponsiveContainer>
+
+            <Box sx={{ height: 300 }}>            </Box>
+
+              <ResponsiveContainer>          </Paper>
+
+                <BarChart        </Grid>
+
+                  data={Object.entries(summaryData?.anomalyDistribution || {}).map(([name, value]) => ({      </Grid>
+
+                    name,
+
+                    value      {/* Bot Analysis Section */}
+
+                  }))}      <Grid container spacing={3}>
+
+                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}        <Grid item xs={12}>
+
+                >          <Paper sx={{ 
+
+                  <CartesianGrid strokeDasharray="3 3" />            p: 3, 
+
+                  <XAxis dataKey="name" />            background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)',
+
+                  <YAxis />            color: 'white',
+
+                  <Tooltip content={<CustomTooltip />} />            height: '100%'
+
+                  <Bar dataKey="value">          }}>
+
+                    {(entry, index) => (            <Typography variant="h6" gutterBottom>AI Failure Analysis Report</Typography>
+
+                      <Cell 
+
+                        key={`cell-${index}`}             {analysisLoading ? (
+
+                        fill={entry.name === 'Anomalous' ? COLORS.error : COLORS.success}              <Box sx={{ width: '100%' }}>
+
+                      />                <LinearProgress />
+
+                    )}              </Box>
+
+                  </Bar>            ) : (
+
+                </BarChart>              <Box>
+
+              </ResponsiveContainer>                {bots.length > 0 ? (
+
+            </Box>                  <Grid container spacing={2}>
+
+          </Paper>                    {bots.map((bot) => {
+
+        </Grid>                      const analysis = botAnalyses[bot.bot_name]
+
+      </Grid>                      if (!analysis) return null;
+
+
+
+      {/* Anomaly Details Section */}                      const isAnomalous = summaryData?.anomalyDetails?.some(
+
+      <Box sx={{ mb: 4 }}>                        detail => detail.bot_name === bot.bot_name
+
+        <Typography variant="h5" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>                      );
+
+          <ErrorIcon sx={{ color: COLORS.error }} /> Anomaly Detection Report
+
+        </Typography>                      return (
+
+        <Grid container spacing={3}>                        <Grid item xs={12} key={bot.bot_name}>
+
+          {summaryData?.anomalyDetails?.map((anomaly) => (                          <Paper sx={{ 
+
+            <Grid item xs={12} key={anomaly.bot_name}>                            p: 2, 
+
+              <Paper                             bgcolor: 'rgba(255,255,255,0.1)',
+
+                sx={{                             border: isAnomalous ? '2px solid #ef4444' : 'none'
+
+                  p: 2,                          }}>
+
+                  border: `2px solid ${COLORS.error}`,                            {/* Bot Header */}
+
+                  backgroundColor: 'rgba(239, 68, 68, 0.1)'                            <Box sx={{ mb: 3 }}>
+
+                }}                              <Typography variant="h6" sx={{ color: 'white', mb: 1 }}>
+
+              >                                {bot.bot_name} ({analysis.owner || bot.owner || bot.User || 'Unknown'})
+
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>                              </Typography>
+
+                  <Box>                              
+
+                    <Typography variant="h6" sx={{ color: COLORS.error }}>                              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+
+                      {anomaly.bot_name}                                <Typography sx={{ 
+
+                    </Typography>                                  color: analysis.risk_level === 'HIGH RISK' ? '#ef4444' : 
+
+                    <Typography variant="body2" color="text.secondary">                                         analysis.risk_level === 'MEDIUM RISK' ? '#f59e0b' : '#10b981'
+
+                      Owner: {anomaly.owner}                                }}>
+
+                    </Typography>                                  {analysis.risk_level} - Risk Score: {analysis.risk_score ? (analysis.risk_score * 100).toFixed(1) : 0}%
+
+                  </Box>                                </Typography>
+
+                  <Chip                                 {isAnomalous && (
+
+                    label={`Anomaly Score: ${(anomaly.anomaly_score * 100).toFixed(1)}%`}                                  <Typography sx={{ color: '#ef4444', display: 'flex', alignItems: 'center', gap: 1 }}>
+
+                    color="error"                                    <ErrorIcon /> ANOMALY DETECTED
+
+                    icon={<PriorityHighIcon />}                                  </Typography>
+
+                  />                                )}
+
+                </Box>                              </Box>
+
+                <Grid container spacing={2}>                            </Box>
+
+                  <Grid item xs={12} md={4}>
+
+                    <Paper sx={{ p: 2, bgcolor: 'background.default' }}>                            {/* Analysis Content */}
+
+                      <Typography variant="subtitle2" color="text.secondary">Success Rate</Typography>                            <Box sx={{ px: 2, py: 1 }}>
+
+                      <Typography variant="h6">{anomaly.success_rate.toFixed(1)}%</Typography>                              {/* Key Contributing Factors */}
+
+                      <LinearProgress                               <Box sx={{ mb: 3 }}>
+
+                        variant="determinate"                                 <Typography variant="h6" sx={{ color: 'white' }} gutterBottom>
+
+                        value={anomaly.success_rate}                                   Key Contributing Factors:
+
+                        sx={{                                 </Typography>
+
+                          mt: 1,                                {analysis.key_factors?.filter(Boolean).map((factor, idx) => (
+
+                          backgroundColor: 'rgba(239, 68, 68, 0.2)',                                  <Typography key={idx} variant="body1" sx={{ color: 'white' }}>
+
+                          '& .MuiLinearProgress-bar': {                                    • {factor}
+
+                            backgroundColor: COLORS.success                                  </Typography>
+
+                          }                                ))}
+
+                        }}                              </Box>
+
+                      />
+
+                    </Paper>                              {/* Recommendations */}
+
+                  </Grid>                              <Box sx={{ mb: 3 }}>
+
+                  <Grid item xs={12} md={4}>                                <Typography variant="h6" sx={{ color: 'white' }} gutterBottom>
+
+                    <Paper sx={{ p: 2, bgcolor: 'background.default' }}>                                  Recommendations:
+
+                      <Typography variant="subtitle2" color="text.secondary">Failure Count</Typography>                                </Typography>
+
+                      <Typography variant="h6">{anomaly.failure_count}</Typography>                                {analysis.recommendations?.map((rec, idx) => (
+
+                      <LinearProgress                                   <Typography key={idx} variant="body1" sx={{ color: 'white' }}>
+
+                        variant="determinate"                                     • {rec}
+
+                        value={(anomaly.failure_count / (summaryData?.totalFailures || 1)) * 100}                                   </Typography>
+
+                        sx={{                                 ))}
+
+                          mt: 1,                              </Box>
+
+                          backgroundColor: 'rgba(239, 68, 68, 0.2)',
+
+                          '& .MuiLinearProgress-bar': {                              {/* Most Influential Factors */}
+
+                            backgroundColor: COLORS.error                              <Box sx={{ mb: 4 }}>
+
+                          }                                <Typography variant="h6" sx={{ color: 'white' }} gutterBottom>
+
+                        }}                                  Most Influential Factors:
+
+                      />                                </Typography>
+
+                    </Paper>                                {analysis.influential_factors?.map((factor, idx) => (
+
+                  </Grid>                                  <Typography key={idx} variant="body1" sx={{ color: 'white' }}>
+
+                  <Grid item xs={12} md={4}>                                    • {factor.factor}: {factor.influence}% influence
+
+                    <Paper sx={{ p: 2, bgcolor: 'background.default' }}>                                  </Typography>
+
+                      <Typography variant="subtitle2" color="text.secondary">Avg Execution Time</Typography>                                ))}
+
+                      <Typography variant="h6">{anomaly.avg_exec_time.toFixed(1)}s</Typography>                              </Box>
+
+                      <LinearProgress 
+
+                        variant="determinate"                               {/* Bot Details with Graph */}
+
+                        value={(anomaly.avg_exec_time / (summaryData?.averageExecutionTime || 1)) * 100}                              <Box>
+
+                        sx={{                                 <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
+
+                          mt: 1,                                  Bot Details
+
+                          backgroundColor: 'rgba(239, 68, 68, 0.2)',                                </Typography>
+
+                          '& .MuiLinearProgress-bar': {                                <Box sx={{ height: 250, bgcolor: 'rgba(0,0,0,0.2)', borderRadius: 1, p: 2 }}>
+
+                            backgroundColor: COLORS.warning                                  <ResponsiveContainer>
+
+                          }                                    <BarChart
+
+                        }}                                      data={[
+
+                      />                                        { name: 'Risk Probability', value: analysis.failure_probability || 0 },
+
+                    </Paper>                                        { name: 'Failure Rate', value: analysis.metrics?.failure_rate || 0 },
+
+                  </Grid>                                        { name: 'Success Rate', value: analysis.metrics?.success_rate || 0 }
+
+                </Grid>                                      ]}
+
+              </Paper>                                      margin={{ top: 10, right: 30, left: 0, bottom: 5 }}
+
+            </Grid>                                    >
+
+          ))}                                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+
+          {(!summaryData?.anomalyDetails || summaryData.anomalyDetails.length === 0) && (                                      <XAxis dataKey="name" stroke="white" />
+
+            <Grid item xs={12}>                                      <YAxis stroke="white" />
+
+              <Paper sx={{ p: 3, textAlign: 'center' }}>                                      <Tooltip
+
+                <CheckCircleIcon sx={{ fontSize: 48, color: COLORS.success, mb: 2 }} />                                        contentStyle={{ 
+
+                <Typography variant="h6" gutterBottom>No Anomalies Detected</Typography>                                          backgroundColor: 'rgba(0,0,0,0.8)', 
+
+                <Typography color="text.secondary">                                          border: 'none',
+
+                  All bots are currently performing within expected parameters.                                          borderRadius: '4px',
+
+                </Typography>                                          color: 'white'
+
+              </Paper>                                        }}
+
+            </Grid>                                        formatter={(value) => `${value.toFixed(1)}%`}
+
+          )}                                      />
+
+        </Grid>                                      <Bar dataKey="value">
+
+      </Box>                                        {(entry, index) => {
+
+                                          const colors = ['#ef4444', '#f59e0b', '#10b981'];
+
+      {/* Bot Analysis Section */}                                          return <Cell key={`cell-${index}`} fill={colors[index]} />;
+
+      <Box>                                        }}
+
+        <Typography variant="h5" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>                                      </Bar>
+
+          <TrendingUpIcon /> Performance Analysis                                    </BarChart>
+
+        </Typography>                                  </ResponsiveContainer>
+
+        <Grid container spacing={3}>                                </Box>
+
+          {predictions.map((bot) => {                              </Box>
+
+            const analysis = botAnalyses[bot.bot_name];                            </Box>
+
+            if (!analysis) return null;                          </Paper>
+
+                        </Grid>
+
+            return (                      );
+
+              <Grid item xs={12} md={6} key={bot.bot_name}>                    })}
+
+                <Paper sx={{ p: 3 }}>                  </Grid>
+
+                  <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>                ) : (
+
+                    <Box>                  <Box sx={{ textAlign: 'center', mt: 3 }}>
+
+                      <Typography variant="h6">{bot.bot_name}</Typography>                    <Typography variant="h6" color="white" gutterBottom>
+
+                      <Typography color="text.secondary">{analysis.owner}</Typography>                      No bots found {selectedUser ? `for user "${selectedUser}"` : ''}
+
+                    </Box>                    </Typography>
+
+                    <Chip                     <Typography variant="body1" color="white" sx={{ opacity: 0.7 }}>
+
+                      label={analysis.risk_level}                      {selectedUser 
+
+                      color={                        ? "Try selecting a different user or check if the user name matches exactly."
+
+                        analysis.risk_level === 'HIGH RISK' ? 'error' :                        : "Please select a user to view their bot analysis."}
+
+                        analysis.risk_level === 'MEDIUM RISK' ? 'warning' : 'success'                    </Typography>
+
+                      }                  </Box>
+
+                      variant="outlined"                )}
+
+                    />              </Box>
+
+                  </Box>            )}
+
+                            </Paper>
+
+                  <Grid container spacing={2} sx={{ mb: 3 }}>        </Grid>
+
+                    <Grid item xs={4}>      </Grid>
+
+                      <Box sx={{ textAlign: 'center' }}>    </Box>
+
+                        <Typography color="text.secondary" gutterBottom>Risk Score</Typography>  );
+
+                        <Typography variant="h6" color={COLORS.error}>}
+
+                          {(analysis.risk_score * 100).toFixed(1)}%
+                        </Typography>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Box sx={{ textAlign: 'center' }}>
+                        <Typography color="text.secondary" gutterBottom>Success Rate</Typography>
+                        <Typography variant="h6" color={COLORS.success}>
+                          {analysis.success_rate?.toFixed(1)}%
+                        </Typography>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Box sx={{ textAlign: 'center' }}>
+                        <Typography color="text.secondary" gutterBottom>Failure Rate</Typography>
+                        <Typography variant="h6" color={COLORS.warning}>
+                          {analysis.failure_rate?.toFixed(1)}%
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  </Grid>
+
+                  <Divider sx={{ my: 2 }} />
+
+                  <Box sx={{ mb: 2 }}>
+                    <Typography variant="subtitle1" gutterBottom>Key Factors:</Typography>
+                    {analysis.key_factors?.filter(Boolean).map((factor, idx) => (
+                      <Typography key={idx} variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
+                        • {factor}
+                      </Typography>
+                    ))}
+                  </Box>
+
+                  <Box sx={{ mb: 2 }}>
+                    <Typography variant="subtitle1" gutterBottom>Recommendations:</Typography>
+                    {analysis.recommendations?.map((rec, idx) => (
+                      <Typography key={idx} variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
+                        • {rec}
+                      </Typography>
+                    ))}
+                  </Box>
+
+                  <Box>
+                    <Typography variant="subtitle1" gutterBottom>Influential Factors:</Typography>
+                    {analysis.influential_factors?.map((factor, idx) => (
+                      <Box key={idx} sx={{ mb: 1 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
+                          <Typography variant="body2">{factor.factor}</Typography>
+                          <Typography variant="body2">{factor.influence}%</Typography>
+                        </Box>
+                        <LinearProgress
+                          variant="determinate"
+                          value={factor.influence}
+                          sx={{
+                            height: 8,
+                            borderRadius: 4,
+                            bgcolor: 'rgba(0,0,0,0.1)',
+                            '& .MuiLinearProgress-bar': {
+                              borderRadius: 4,
+                              backgroundColor: COLORS.info
+                            }
+                          }}
+                        />
+                      </Box>
+                    ))}
+                  </Box>
+                </Paper>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
+    </Box>
+  );
+}

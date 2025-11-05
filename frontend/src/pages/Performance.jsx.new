@@ -1,0 +1,64 @@
+import React, { useEffect, useState } from 'react';
+import { Box, Typography } from '@mui/material';
+import { getPerformance } from '../api';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+
+export default function Performance() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    getPerformance()
+      .then(d => mounted && setData(d.performance))
+      .catch(() => {});
+    return () => mounted = false;
+  }, []);
+
+  if (!data) return <div className="loading card">Loading performance...</div>;
+
+  const topPerformers = data.slice(0, 10);
+
+  return (
+    <div>
+      <h1>Performance Dashboard</h1>
+      <div className="card">
+        <h3>CPU / Memory (Top 10 Bots)</h3>
+        <ResponsiveContainer width="100%" height={250}>
+          <BarChart data={topPerformers}>
+            <XAxis dataKey="bot_name" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="cpu_percent" stackId="a" fill="#60a5fa" />
+            <Bar dataKey="memory_percent" stackId="a" fill="#f97316" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="card">
+        <h3>Per-bot Performance Details</h3>
+        <table style={{width: '100%'}}>
+          <thead>
+            <tr>
+              <th>Bot</th>
+              <th>Avg Execution (s)</th>
+              <th>Success Rate</th>
+              <th>CPU %</th>
+              <th>Memory %</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row, index) => (
+              <tr key={index}>
+                <td>{row.bot_name}</td>
+                <td>{row.avg_execution_time_s}</td>
+                <td>{row.success_rate}</td>
+                <td>{Math.round(row.cpu_percent)}</td>
+                <td>{Math.round(row.memory_percent)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

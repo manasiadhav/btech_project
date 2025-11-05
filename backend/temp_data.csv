@@ -1,0 +1,801 @@
+Bot Name,Bot Type,Success Rate (%),Average Execution Time (s),Last Status,Run Count,Failure Count,Owner,Last Run Timestamp,Version,Priority
+bot1,scheduled,63.35,5.97,failed,424,26,user16,01-01-2023 00:00,v1.0,Low
+bot2,scheduled,86.45,1.31,in progress,235,33,user7,01-01-2023 12:00,v1.5,Medium
+bot3,user activated,64.2,2.54,successfully ran,135,31,user10,02-01-2023 00:00,v1.8,Critical
+bot4,user activated,72.91,9.85,in progress,410,2,user15,02-01-2023 12:00,v3.0,Medium
+bot5,scheduled,75.42,8.34,pending,449,50,user16,03-01-2023 00:00,v4.0,Medium
+bot6,scheduled,90.22,6.28,pending,234,2,user7,03-01-2023 12:00,v2.1,Low
+bot7,user activated,98.31,4.43,successfully ran,348,48,user8,04-01-2023 00:00,v3.8,Critical
+bot8,user activated,90.46,9.12,pending,310,50,user7,04-01-2023 12:00,v2.4,Low
+bot9,user activated,90.16,5.87,pending,213,14,user17,05-01-2023 00:00,v3.2,High
+bot10,scheduled,66.4,3.13,failed,475,49,user17,05-01-2023 12:00,v3.0,Critical
+bot11,scheduled,94.6,6.88,successfully ran,253,5,user17,06-01-2023 00:00,v4.0,High
+bot12,scheduled,74.47,1.15,pending,354,20,user2,06-01-2023 12:00,v4.1,Low
+bot13,user activated,65.62,7.92,pending,152,4,user4,07-01-2023 00:00,v5.9,Low
+bot14,scheduled,78.94,3.31,pending,81,12,user20,07-01-2023 12:00,v2.6,Low
+bot15,scheduled,70.48,9.54,in progress,407,7,user4,08-01-2023 00:00,v5.5,Medium
+bot16,user activated,64.09,6.5,pending,33,36,user17,08-01-2023 12:00,v5.4,High
+bot17,scheduled,94.37,4.95,pending,355,14,user6,09-01-2023 00:00,v1.6,Low
+bot18,user activated,93.78,1.04,in progress,348,27,user16,09-01-2023 12:00,v5.0,Medium
+bot19,user activated,83.12,7.62,in progress,37,36,user16,10-01-2023 00:00,v5.7,Critical
+bot20,scheduled,95.88,7.37,successfully ran,163,29,user4,10-01-2023 12:00,v3.2,Critical
+bot21,user activated,65.02,2.23,pending,466,28,user2,11-01-2023 00:00,v4.4,High
+bot22,scheduled,73.24,0.54,successfully ran,201,40,user10,11-01-2023 12:00,v3.5,High
+bot23,user activated,89.95,4,successfully ran,253,15,user2,12-01-2023 00:00,v4.6,High
+bot24,scheduled,68.56,2.84,pending,76,38,user15,12-01-2023 12:00,v1.8,High
+bot25,scheduled,85.46,9.27,failed,371,32,user1,13-01-2023 00:00,v3.4,Medium
+bot26,user activated,86.03,7.89,successfully ran,106,7,user9,13-01-2023 12:00,v2.1,Critical
+bot27,scheduled,92.92,3.21,pending,470,50,user9,14-01-2023 00:00,v4.9,Medium
+bot28,user activated,83.62,9.59,successfully ran,19,28,user1,14-01-2023 12:00,v3.2,Critical
+bot29,scheduled,92.76,7.69,failed,352,6,user9,15-01-2023 00:00,v4.9,Low
+bot30,scheduled,99.87,6.1,successfully ran,21,21,user14,15-01-2023 12:00,v2.4,High
+bot31,scheduled,73.1,7.9,pending,31,22,user7,16-01-2023 00:00,v2.4,Critical
+bot32,scheduled,99.14,9.9,successfully ran,366,25,user12,16-01-2023 12:00,v5.8,High
+bot33,scheduled,76.81,2.13,in progress,411,38,user17,17-01-2023 00:00,v4.5,Critical
+bot34,user activated,80.81,8.18,successfully ran,121,44,user11,17-01-2023 12:00,v5.9,High
+bot35,user activated,76.22,8.08,pending,206,22,user15,18-01-2023 00:00,v5.7,Critical
+bot36,user activated,66.29,9.1,pending,163,14,user13,18-01-2023 12:00,v4.1,Medium
+bot37,scheduled,62.84,2.76,successfully ran,267,49,user1,19-01-2023 00:00,v2.5,High
+bot38,user activated,91.4,0.9,in progress,436,38,user6,19-01-2023 12:00,v5.7,Medium
+bot39,scheduled,62.68,5.1,pending,51,18,user5,20-01-2023 00:00,v2.1,Medium
+bot40,user activated,64.43,5.51,in progress,334,34,user12,20-01-2023 12:00,v1.6,Low
+bot41,user activated,95.14,9.5,in progress,432,37,user12,21-01-2023 00:00,v4.0,Critical
+bot42,user activated,69.54,8.63,successfully ran,356,32,user2,21-01-2023 12:00,v3.5,Low
+bot43,user activated,82.68,7.98,failed,342,44,user15,22-01-2023 00:00,v5.5,Critical
+bot44,scheduled,70.64,3.04,in progress,53,24,user11,22-01-2023 12:00,v1.3,High
+bot45,user activated,84.27,9.7,successfully ran,438,17,user9,23-01-2023 00:00,v5.5,High
+bot46,scheduled,75.34,2.3,pending,401,29,user11,23-01-2023 12:00,v4.4,Low
+bot47,scheduled,92.67,2.62,successfully ran,230,6,user6,24-01-2023 00:00,v3.7,Low
+bot48,user activated,99.28,1.26,pending,396,20,user2,24-01-2023 12:00,v5.6,High
+bot49,user activated,76.04,0.87,successfully ran,218,22,user4,25-01-2023 00:00,v2.4,Low
+bot50,scheduled,89.92,1.75,successfully ran,243,15,user1,25-01-2023 12:00,v3.7,Critical
+bot51,user activated,87.99,4.31,failed,231,17,user16,26-01-2023 00:00,v3.9,Medium
+bot52,scheduled,66.08,7.66,pending,352,9,user17,26-01-2023 12:00,v4.5,Critical
+bot53,user activated,72.95,5.61,successfully ran,167,11,user15,27-01-2023 00:00,v5.5,Low
+bot54,scheduled,90.21,6.04,in progress,405,6,user16,27-01-2023 12:00,v2.4,High
+bot55,scheduled,64.16,3.35,successfully ran,129,5,user11,28-01-2023 00:00,v5.8,Medium
+bot56,user activated,96.55,7.2,successfully ran,374,24,user13,28-01-2023 12:00,v5.8,Medium
+bot57,user activated,75.67,2.42,in progress,118,48,user8,29-01-2023 00:00,v5.3,Medium
+bot58,user activated,67.38,1.31,pending,449,19,user14,29-01-2023 12:00,v3.5,Low
+bot59,user activated,76.14,4.68,in progress,248,15,user15,30-01-2023 00:00,v4.3,Critical
+bot60,scheduled,71.15,9,pending,379,40,user8,30-01-2023 12:00,v1.0,High
+bot61,user activated,86.82,1.71,in progress,483,18,user17,31-01-2023 00:00,v4.0,High
+bot62,scheduled,65.83,9.36,in progress,467,6,user15,31-01-2023 12:00,v5.0,Critical
+bot63,scheduled,81.59,9.42,in progress,369,8,user14,01-02-2023 00:00,v3.2,Critical
+bot64,scheduled,97.44,7.55,pending,279,35,user3,01-02-2023 12:00,v4.3,Medium
+bot65,user activated,98.48,3.68,successfully ran,251,23,user5,02-02-2023 00:00,v3.8,Medium
+bot66,scheduled,83.68,2.64,failed,131,5,user15,02-02-2023 12:00,v3.2,Medium
+bot67,user activated,91.27,2.41,in progress,348,6,user17,03-02-2023 00:00,v4.2,Medium
+bot68,user activated,70.76,7.5,pending,278,15,user18,03-02-2023 12:00,v5.0,Critical
+bot69,user activated,70.91,2.45,successfully ran,15,12,user16,04-02-2023 00:00,v1.1,High
+bot70,scheduled,62.46,2.23,successfully ran,240,26,user12,04-02-2023 12:00,v2.3,High
+bot71,user activated,65.08,2.98,failed,287,5,user9,05-02-2023 00:00,v5.1,Medium
+bot72,scheduled,92.01,8.89,pending,290,4,user2,05-02-2023 12:00,v2.1,High
+bot73,scheduled,84.21,6.92,failed,171,11,user9,06-02-2023 00:00,v1.2,Low
+bot74,scheduled,67.58,7.74,in progress,154,28,user11,06-02-2023 12:00,v4.1,Medium
+bot75,user activated,75.87,1.18,in progress,224,0,user2,07-02-2023 00:00,v1.4,Critical
+bot76,user activated,99.54,4.14,successfully ran,450,20,user16,07-02-2023 12:00,v5.1,Medium
+bot77,scheduled,81.83,6.93,successfully ran,227,6,user17,08-02-2023 00:00,v3.7,High
+bot78,user activated,61.96,1.86,in progress,377,5,user9,08-02-2023 12:00,v3.1,Low
+bot79,user activated,92.63,5.22,successfully ran,197,21,user8,09-02-2023 00:00,v3.6,High
+bot80,user activated,92.73,5.49,failed,329,49,user10,09-02-2023 12:00,v3.2,High
+bot81,user activated,78.64,1.29,pending,64,1,user3,10-02-2023 00:00,v2.1,Medium
+bot82,user activated,72.48,7.65,failed,465,17,user7,10-02-2023 12:00,v1.5,High
+bot83,scheduled,83.54,3.57,failed,298,13,user3,11-02-2023 00:00,v5.3,Critical
+bot84,user activated,87.45,4.12,failed,143,49,user11,11-02-2023 12:00,v4.2,Critical
+bot85,scheduled,83.85,3.16,in progress,490,45,user16,12-02-2023 00:00,v1.8,High
+bot86,scheduled,75.45,7.76,successfully ran,210,22,user5,12-02-2023 12:00,v4.3,Medium
+bot87,user activated,88.59,1.39,successfully ran,139,11,user19,13-02-2023 00:00,v1.1,Critical
+bot88,user activated,87.38,8.61,failed,479,23,user12,13-02-2023 12:00,v5.9,Low
+bot89,user activated,89.4,9.87,successfully ran,198,29,user18,14-02-2023 00:00,v3.7,Low
+bot90,scheduled,74.07,2.38,failed,62,30,user10,14-02-2023 12:00,v1.2,Critical
+bot91,scheduled,95.35,2.65,pending,18,50,user15,15-02-2023 00:00,v2.3,Medium
+bot92,user activated,83.77,4.2,failed,142,49,user6,15-02-2023 12:00,v1.7,Low
+bot93,user activated,77.23,5.12,pending,165,38,user20,16-02-2023 00:00,v1.8,Critical
+bot94,user activated,70.12,5.53,pending,262,32,user13,16-02-2023 12:00,v5.5,Low
+bot95,user activated,89.73,2.1,successfully ran,64,22,user3,17-02-2023 00:00,v3.9,Low
+bot96,scheduled,80.65,4.11,pending,443,23,user9,17-02-2023 12:00,v5.6,Low
+bot97,user activated,99.73,5.16,failed,293,10,user19,18-02-2023 00:00,v4.9,Low
+bot98,user activated,80.88,5.54,in progress,319,49,user10,18-02-2023 12:00,v3.0,Medium
+bot99,scheduled,64.46,9.58,failed,475,4,user13,19-02-2023 00:00,v1.4,Low
+bot100,scheduled,94.09,0.81,pending,222,25,user15,19-02-2023 12:00,v4.1,Medium
+bot101,scheduled,65.5,7.85,pending,350,9,user17,26-01-2023 18:54,v4.5,Critical
+bot102,user activated,77.36,5.03,pending,173,36,user20,16-02-2023 02:41,v1.8,Critical
+bot103,scheduled,70.1,9.57,in progress,415,9,user4,07-01-2023 12:07,v5.5,Medium
+bot104,scheduled,91.83,8.88,pending,294,2,user2,05-02-2023 14:34,v2.1,High
+bot105,user activated,87.39,1.63,in progress,487,10,user17,31-01-2023 01:06,v4.0,High
+bot106,user activated,64.95,2.45,pending,456,20,user2,10-01-2023 20:35,v4.4,High
+bot107,scheduled,82.98,3.47,failed,299,9,user3,10-02-2023 19:59,v5.3,Critical
+bot108,user activated,88.62,1.48,successfully ran,148,15,user19,13-02-2023 04:03,v1.1,Critical
+bot109,user activated,75.2,1.16,in progress,227,0,user2,06-02-2023 17:37,v1.4,Critical
+bot110,user activated,74.61,1.12,in progress,226,0,user2,07-02-2023 07:01,v1.4,Critical
+bot111,user activated,88.52,8.87,failed,474,26,user12,13-02-2023 13:45,v5.9,Low
+bot112,scheduled,94.97,0.86,pending,219,32,user15,19-02-2023 18:42,v4.1,Medium
+bot113,scheduled,68.21,2.84,pending,80,28,user15,12-01-2023 07:03,v1.8,High
+bot114,user activated,63.84,2.61,successfully ran,129,23,user10,01-01-2023 14:22,v1.8,Critical
+bot115,scheduled,73.38,0.47,successfully ran,191,47,user10,11-01-2023 18:38,v3.5,High
+bot116,user activated,72.68,5.77,successfully ran,157,17,user15,27-01-2023 08:12,v5.5,Low
+bot117,scheduled,85.91,1.49,in progress,229,29,user7,01-01-2023 16:11,v1.5,Medium
+bot118,user activated,87.35,8.3,failed,486,32,user12,13-02-2023 23:50,v5.9,Low
+bot119,scheduled,100,5.98,successfully ran,24,24,user14,15-01-2023 03:40,v2.4,High
+bot120,user activated,92.28,0.77,in progress,439,39,user6,19-01-2023 08:34,v5.7,Medium
+bot121,scheduled,86,1.49,in progress,237,32,user7,01-01-2023 20:59,v1.5,Medium
+bot122,scheduled,96.66,7.92,pending,288,26,user3,01-02-2023 17:21,v4.3,Medium
+bot123,scheduled,70.98,8.97,pending,377,44,user8,30-01-2023 08:57,v1.0,High
+bot124,user activated,65.45,2.64,pending,457,37,user2,11-01-2023 07:04,v4.4,High
+bot125,scheduled,77.02,2.26,in progress,407,34,user17,16-01-2023 23:38,v4.5,Critical
+bot126,user activated,99.31,4.2,successfully ran,458,23,user16,07-02-2023 13:39,v5.1,Medium
+bot127,user activated,67.05,1.44,pending,452,16,user14,29-01-2023 11:37,v3.5,Low
+bot128,scheduled,73.94,0.67,successfully ran,204,32,user10,11-01-2023 21:55,v3.5,High
+bot129,user activated,90.15,9.76,successfully ran,200,21,user18,14-02-2023 11:34,v3.7,Low
+bot130,user activated,76.23,0.91,successfully ran,221,25,user4,24-01-2023 21:19,v2.4,Low
+bot131,scheduled,95.06,2.75,pending,27,40,user15,14-02-2023 20:30,v2.3,Medium
+bot132,user activated,76.79,4.98,in progress,241,15,user15,29-01-2023 15:07,v4.3,Critical
+bot133,user activated,69.3,8.44,successfully ran,362,25,user2,21-01-2023 03:34,v3.5,Low
+bot134,user activated,84.55,3.84,failed,133,50,user6,15-02-2023 15:50,v1.7,Low
+bot135,scheduled,70.13,8.9,pending,381,30,user8,30-01-2023 08:03,v1.0,High
+bot136,user activated,91.97,5.38,failed,335,54,user10,09-02-2023 17:28,v3.2,High
+bot137,scheduled,70.06,9.47,in progress,415,0,user4,07-01-2023 20:42,v5.5,Medium
+bot138,scheduled,65.95,9.29,in progress,459,8,user15,31-01-2023 08:43,v5.0,Critical
+bot139,scheduled,66.87,9.37,in progress,468,0,user15,31-01-2023 01:30,v5.0,Critical
+bot140,scheduled,92.77,2.56,successfully ran,227,9,user6,23-01-2023 15:29,v3.7,Low
+bot141,scheduled,66.17,9.39,in progress,462,7,user15,31-01-2023 09:49,v5.0,Critical
+bot142,user activated,87.68,4.03,failed,234,17,user16,25-01-2023 23:55,v3.9,Medium
+bot143,scheduled,63.49,3.5,successfully ran,130,0,user11,27-01-2023 17:30,v5.8,Medium
+bot144,scheduled,97.72,7.44,pending,274,41,user3,01-02-2023 06:54,v4.3,Medium
+bot145,user activated,63.73,2.57,successfully ran,137,30,user10,01-01-2023 14:29,v1.8,Critical
+bot146,user activated,86.52,4.13,failed,232,22,user16,25-01-2023 14:47,v3.9,Medium
+bot147,user activated,98.12,4.62,successfully ran,341,47,user8,03-01-2023 18:40,v3.8,Critical
+bot148,user activated,65.99,2.34,pending,470,35,user2,11-01-2023 04:23,v4.4,High
+bot149,scheduled,85.68,7.12,failed,180,19,user9,06-02-2023 11:45,v1.2,Low
+bot150,scheduled,62.57,4.94,pending,59,12,user5,19-01-2023 21:36,v2.1,Medium
+bot151,user activated,93.5,1.13,in progress,344,17,user16,09-01-2023 21:16,v5.0,Medium
+bot152,user activated,73.01,9.87,in progress,410,0,user15,02-01-2023 17:02,v3.0,Medium
+bot153,user activated,88.93,10.18,successfully ran,194,23,user18,14-02-2023 09:11,v3.7,Low
+bot154,scheduled,71.15,9.17,pending,369,32,user8,30-01-2023 22:47,v1.0,High
+bot155,scheduled,79.11,3.23,pending,72,4,user20,07-01-2023 18:58,v2.6,Low
+bot156,user activated,90.59,5.77,pending,203,10,user17,04-01-2023 15:11,v3.2,High
+bot157,scheduled,73.75,2.3,failed,60,30,user10,14-02-2023 05:01,v1.2,Critical
+bot158,user activated,71.86,5.6,successfully ran,170,6,user15,27-01-2023 07:24,v5.5,Low
+bot159,scheduled,87.23,1.1,in progress,242,33,user7,01-01-2023 10:53,v1.5,Medium
+bot160,user activated,87.52,3.86,failed,148,51,user11,11-02-2023 04:22,v4.2,Critical
+bot161,user activated,83.48,4.3,failed,151,47,user6,15-02-2023 23:31,v1.7,Low
+bot162,scheduled,70.73,9.13,pending,378,46,user8,30-01-2023 07:37,v1.0,High
+bot163,user activated,65.43,2.87,failed,278,6,user9,05-02-2023 09:51,v5.1,Medium
+bot164,scheduled,70.58,3.17,in progress,43,20,user11,22-01-2023 21:59,v1.3,High
+bot165,user activated,90.95,8.92,pending,306,49,user7,04-01-2023 13:59,v2.4,Low
+bot166,scheduled,92.21,2.81,successfully ran,223,4,user6,24-01-2023 00:26,v3.7,Low
+bot167,user activated,76.62,8.03,pending,206,13,user15,18-01-2023 11:52,v5.7,Critical
+bot168,user activated,62.24,1.8,in progress,383,3,user9,08-02-2023 23:42,v3.1,Low
+bot169,user activated,77.79,1.41,pending,73,0,user3,10-02-2023 10:57,v2.1,Medium
+bot170,user activated,66.27,8.99,pending,166,5,user13,18-01-2023 07:38,v4.1,Medium
+bot171,scheduled,89.16,1.83,successfully ran,252,14,user1,25-01-2023 05:19,v3.7,Critical
+bot172,user activated,72.69,9.77,in progress,406,0,user15,02-01-2023 17:15,v3.0,Medium
+bot173,scheduled,86.36,1.33,in progress,225,26,user7,01-01-2023 12:24,v1.5,Medium
+bot174,scheduled,89.92,6.13,pending,232,0,user7,03-01-2023 12:02,v2.1,Low
+bot175,scheduled,90.12,5.87,in progress,400,9,user16,27-01-2023 13:15,v2.4,High
+bot176,user activated,71.91,9.74,in progress,414,0,user15,02-01-2023 02:43,v3.0,Medium
+bot177,scheduled,88.77,6.06,in progress,398,0,user16,27-01-2023 02:09,v2.4,High
+bot178,user activated,76.93,4.89,pending,169,40,user20,16-02-2023 00:23,v1.8,Critical
+bot179,scheduled,82.22,9.67,in progress,374,4,user14,01-02-2023 05:40,v3.2,Critical
+bot180,user activated,93.69,0.91,in progress,357,29,user16,09-01-2023 12:31,v5.0,Medium
+bot181,scheduled,74.32,2.36,failed,65,21,user10,14-02-2023 08:39,v1.2,Critical
+bot182,scheduled,69.95,3.02,in progress,54,27,user11,22-01-2023 05:38,v1.3,High
+bot183,user activated,80.72,8.28,successfully ran,123,39,user11,17-01-2023 03:41,v5.9,High
+bot184,scheduled,67.04,7.65,in progress,162,33,user11,06-02-2023 08:20,v4.1,Medium
+bot185,scheduled,66.82,9.39,in progress,476,7,user15,31-01-2023 11:40,v5.0,Critical
+bot186,scheduled,94.77,0.82,pending,228,28,user15,19-02-2023 12:09,v4.1,Medium
+bot187,scheduled,78.71,3.28,pending,74,10,user20,07-01-2023 15:13,v2.6,Low
+bot188,user activated,89.74,1.98,successfully ran,56,20,user3,16-02-2023 18:27,v3.9,Low
+bot189,user activated,98.49,1.19,pending,395,10,user2,24-01-2023 15:15,v5.6,High
+bot190,scheduled,70.27,9.69,in progress,402,0,user4,08-01-2023 11:30,v5.5,Medium
+bot191,scheduled,92.41,8.82,pending,298,5,user2,05-02-2023 00:23,v2.1,High
+bot192,user activated,62.02,1.79,in progress,376,8,user9,08-02-2023 18:14,v3.1,Low
+bot193,user activated,89,1.4,successfully ran,147,5,user19,13-02-2023 02:28,v1.1,Critical
+bot194,scheduled,66.72,9.33,in progress,473,10,user15,31-01-2023 07:32,v5.0,Critical
+bot195,user activated,64.43,5.41,in progress,339,25,user12,20-01-2023 19:05,v1.6,Low
+bot196,scheduled,82.55,3.15,in progress,487,44,user16,12-02-2023 04:51,v1.8,High
+bot197,user activated,91.8,5.36,failed,325,43,user10,09-02-2023 01:31,v3.2,High
+bot198,user activated,72.69,7.52,failed,472,8,user7,10-02-2023 06:43,v1.5,High
+bot199,user activated,73.2,5.61,successfully ran,167,9,user15,27-01-2023 00:02,v5.5,Low
+bot200,scheduled,68.94,2.84,pending,85,29,user15,12-01-2023 20:39,v1.8,High
+bot201,user activated,85.56,7.92,successfully ran,111,11,user9,13-01-2023 23:09,v2.1,Critical
+bot202,user activated,90.92,10.08,successfully ran,200,22,user18,13-02-2023 14:07,v3.7,Low
+bot203,scheduled,71.03,8.82,pending,379,41,user8,30-01-2023 07:08,v1.0,High
+bot204,user activated,94.3,9.54,in progress,427,30,user12,21-01-2023 08:53,v4.0,Critical
+bot205,scheduled,92.39,7.69,failed,343,4,user9,15-01-2023 11:26,v4.9,Low
+bot206,scheduled,70.02,9.47,in progress,410,4,user4,07-01-2023 23:53,v5.5,Medium
+bot207,user activated,83.86,9.74,successfully ran,435,20,user9,22-01-2023 18:26,v5.5,High
+bot208,user activated,98.31,3.51,successfully ran,253,24,user5,01-02-2023 21:32,v3.8,Medium
+bot209,user activated,89.34,9.96,successfully ran,197,22,user18,13-02-2023 12:40,v3.7,Low
+bot210,user activated,64.73,3.15,failed,282,5,user9,04-02-2023 16:02,v5.1,Medium
+bot211,user activated,89.61,5.82,pending,208,17,user17,04-01-2023 23:01,v3.2,High
+bot212,user activated,86.49,8.71,failed,484,31,user12,13-02-2023 20:35,v5.9,Low
+bot213,scheduled,62.8,6,failed,414,24,user16,31-12-2022 22:10,v1.0,Low
+bot214,user activated,89.88,9.01,pending,317,58,user7,04-01-2023 12:28,v2.4,Low
+bot215,user activated,88.32,8.59,failed,480,26,user12,13-02-2023 22:58,v5.9,Low
+bot216,scheduled,81.57,9.48,in progress,360,6,user14,01-02-2023 08:29,v3.2,Critical
+bot217,scheduled,93.35,6.91,successfully ran,247,10,user17,05-01-2023 16:36,v4.0,High
+bot218,user activated,79.13,1.08,pending,71,0,user3,09-02-2023 18:55,v2.1,Medium
+bot219,user activated,89.69,8.99,pending,313,52,user7,04-01-2023 11:04,v2.4,Low
+bot220,user activated,76.03,7.99,pending,215,25,user15,17-01-2023 14:36,v5.7,Critical
+bot221,user activated,76.69,8.06,pending,198,16,user15,17-01-2023 15:26,v5.7,Critical
+bot222,scheduled,75.58,1.96,in progress,403,33,user17,16-01-2023 18:05,v4.5,Critical
+bot223,scheduled,75.62,8.38,pending,442,58,user16,03-01-2023 10:51,v4.0,Medium
+bot224,user activated,95.53,9.34,in progress,426,31,user12,20-01-2023 18:38,v4.0,Critical
+bot225,user activated,82.79,9.81,successfully ran,23,21,user1,14-01-2023 21:02,v3.2,Critical
+bot226,user activated,99.2,4.42,successfully ran,349,45,user8,04-01-2023 07:51,v3.8,Critical
+bot227,scheduled,84.8,7.02,failed,170,12,user9,06-02-2023 00:15,v1.2,Low
+bot228,scheduled,93.05,8.83,pending,299,11,user2,05-02-2023 21:28,v2.1,High
+bot229,scheduled,74.2,1.08,pending,354,13,user2,06-01-2023 12:32,v4.1,Low
+bot230,user activated,81.02,8.19,successfully ran,115,38,user11,17-01-2023 07:33,v5.9,High
+bot231,scheduled,76.99,1.86,in progress,414,28,user17,17-01-2023 10:37,v4.5,Critical
+bot232,user activated,99.69,1.09,pending,392,16,user2,24-01-2023 09:35,v5.6,High
+bot233,user activated,89.92,3.97,successfully ran,253,8,user2,11-01-2023 17:23,v4.6,High
+bot234,scheduled,66.19,9.46,in progress,463,10,user15,31-01-2023 17:45,v5.0,Critical
+bot235,user activated,87.9,8.65,failed,471,27,user12,13-02-2023 19:04,v5.9,Low
+bot236,scheduled,62.45,2.65,successfully ran,262,47,user1,19-01-2023 03:27,v2.5,High
+bot237,scheduled,64.47,9.53,failed,475,9,user13,19-02-2023 05:04,v1.4,Low
+bot238,scheduled,71.52,3.03,in progress,53,18,user11,22-01-2023 16:09,v1.3,High
+bot239,scheduled,76.19,7.58,successfully ran,201,29,user5,12-02-2023 18:00,v4.3,Medium
+bot240,scheduled,95.66,2.47,pending,11,48,user15,15-02-2023 00:30,v2.3,Medium
+bot241,user activated,76.2,8.32,pending,204,24,user15,18-01-2023 11:20,v5.7,Critical
+bot242,user activated,98.52,3.43,successfully ran,255,23,user5,02-02-2023 02:02,v3.8,Medium
+bot243,scheduled,64.91,9.71,failed,474,0,user13,18-02-2023 14:47,v1.4,Low
+bot244,scheduled,92.47,2.9,successfully ran,239,3,user6,24-01-2023 03:02,v3.7,Low
+bot245,user activated,62.41,1.88,in progress,372,4,user9,08-02-2023 07:41,v3.1,Low
+bot246,user activated,65.25,2.53,successfully ran,133,37,user10,01-01-2023 17:01,v1.8,Critical
+bot247,scheduled,62.73,6.04,failed,433,21,user16,01-01-2023 10:26,v1.0,Low
+bot248,scheduled,75.71,8.35,pending,455,46,user16,02-01-2023 20:29,v4.0,Medium
+bot249,scheduled,73.15,2.46,failed,56,25,user10,14-02-2023 12:37,v1.2,Critical
+bot250,scheduled,78.74,3.46,pending,81,17,user20,07-01-2023 09:39,v2.6,Low
+bot251,scheduled,93.07,3.3,pending,478,46,user9,14-01-2023 09:03,v4.9,Medium
+bot252,user activated,89.67,5.69,pending,209,20,user17,04-01-2023 13:54,v3.2,High
+bot253,user activated,92.8,5.17,successfully ran,188,18,user8,09-02-2023 10:45,v3.6,High
+bot254,scheduled,70.65,9.74,in progress,416,9,user4,07-01-2023 13:43,v5.5,Medium
+bot255,scheduled,73.87,2.49,failed,57,26,user10,14-02-2023 02:47,v1.2,Critical
+bot256,user activated,70.35,8.59,successfully ran,352,31,user2,21-01-2023 17:37,v3.5,Low
+bot257,scheduled,82,6.72,successfully ran,218,3,user17,07-02-2023 23:58,v3.7,High
+bot258,user activated,87.65,4.45,failed,234,13,user16,26-01-2023 03:23,v3.9,Medium
+bot259,scheduled,81.21,9.31,in progress,370,2,user14,01-02-2023 06:16,v3.2,Critical
+bot260,scheduled,81.22,4.13,pending,447,18,user9,17-02-2023 23:40,v5.6,Low
+bot261,scheduled,66.08,7.64,pending,358,16,user17,26-01-2023 04:11,v4.5,Critical
+bot262,scheduled,80.35,3.85,pending,435,26,user9,17-02-2023 14:00,v5.6,Low
+bot263,user activated,71.91,9.97,in progress,414,6,user15,02-01-2023 23:25,v3.0,Medium
+bot264,user activated,70.41,5.64,pending,263,39,user13,16-02-2023 09:23,v5.5,Low
+bot265,user activated,89.44,4.25,successfully ran,254,9,user2,11-01-2023 22:39,v4.6,High
+bot266,scheduled,70.33,9.65,in progress,409,8,user4,07-01-2023 18:07,v5.5,Medium
+bot267,user activated,82.54,8.1,failed,337,39,user15,21-01-2023 15:35,v5.5,Critical
+bot268,scheduled,92.79,7.62,failed,349,3,user9,15-01-2023 03:27,v4.9,Low
+bot269,user activated,66.56,9.22,pending,164,22,user13,18-01-2023 12:57,v4.1,Medium
+bot270,user activated,65.2,7.85,pending,157,0,user4,06-01-2023 21:06,v5.9,Low
+bot271,scheduled,100,9.77,successfully ran,356,15,user12,16-01-2023 15:16,v5.8,High
+bot272,user activated,65.08,2.83,failed,293,7,user9,04-02-2023 19:51,v5.1,Medium
+bot273,user activated,76,4.7,in progress,244,12,user15,30-01-2023 02:44,v4.3,Critical
+bot274,scheduled,75.16,7.86,successfully ran,217,14,user5,12-02-2023 02:52,v4.3,Medium
+bot275,user activated,84.07,9.5,successfully ran,25,20,user1,14-01-2023 10:25,v3.2,Critical
+bot276,scheduled,83.61,2.88,failed,140,13,user15,02-02-2023 15:05,v3.2,Medium
+bot277,user activated,69.01,8.57,successfully ran,352,24,user2,21-01-2023 18:24,v3.5,Low
+bot278,user activated,84.35,9.85,successfully ran,429,14,user9,22-01-2023 22:11,v5.5,High
+bot279,scheduled,65.47,9.37,in progress,475,11,user15,31-01-2023 23:55,v5.0,Critical
+bot280,user activated,75.42,2.37,in progress,117,48,user8,29-01-2023 06:57,v5.3,Medium
+bot281,scheduled,90.31,6.45,pending,243,10,user7,03-01-2023 12:46,v2.1,Low
+bot282,user activated,83.38,9.46,successfully ran,19,22,user1,14-01-2023 00:34,v3.2,Critical
+bot283,user activated,83.49,9.45,successfully ran,15,33,user1,14-01-2023 23:54,v3.2,Critical
+bot284,scheduled,69.35,3.23,in progress,59,27,user11,22-01-2023 05:18,v1.3,High
+bot285,user activated,87.25,4.21,failed,135,41,user11,11-02-2023 00:11,v4.2,Critical
+bot286,scheduled,99.31,6,successfully ran,12,27,user14,15-01-2023 07:41,v2.4,High
+bot287,scheduled,66.92,9.49,in progress,475,0,user15,31-01-2023 22:06,v5.0,Critical
+bot288,user activated,75.12,1.21,in progress,217,0,user2,06-02-2023 15:22,v1.4,Critical
+bot289,user activated,84.23,4.27,failed,136,43,user6,15-02-2023 09:24,v1.7,Low
+bot290,user activated,89.84,9.78,successfully ran,190,19,user18,14-02-2023 00:57,v3.7,Low
+bot291,scheduled,65.39,9.61,in progress,470,7,user15,31-01-2023 02:46,v5.0,Critical
+bot292,user activated,100,5.09,failed,295,2,user19,17-02-2023 16:30,v4.9,Low
+bot293,scheduled,63.34,6.28,failed,427,17,user16,01-01-2023 05:33,v1.0,Low
+bot294,scheduled,92.93,3.3,pending,473,46,user9,14-01-2023 05:43,v4.9,Medium
+bot295,scheduled,66.34,8.99,in progress,458,8,user15,31-01-2023 19:05,v5.0,Critical
+bot296,scheduled,82.57,7.12,successfully ran,233,13,user17,07-02-2023 13:59,v3.7,High
+bot297,user activated,63.84,2.59,successfully ran,131,27,user10,01-01-2023 22:13,v1.8,Critical
+bot298,scheduled,63.3,2.44,successfully ran,234,25,user12,04-02-2023 18:58,v2.3,High
+bot299,scheduled,92.41,9.03,pending,296,7,user2,05-02-2023 17:49,v2.1,High
+bot300,scheduled,92.17,3.09,pending,479,40,user9,14-01-2023 09:10,v4.9,Medium
+bot301,user activated,90.2,5.89,pending,206,4,user17,05-01-2023 06:12,v3.2,High
+bot302,scheduled,64.37,9.55,in progress,466,4,user15,31-01-2023 11:18,v5.0,Critical
+bot303,scheduled,62.2,2.53,successfully ran,267,39,user1,19-01-2023 01:15,v2.5,High
+bot304,user activated,99.5,5.09,failed,294,17,user19,18-02-2023 00:11,v4.9,Low
+bot305,user activated,88.39,4.71,failed,221,10,user16,26-01-2023 03:48,v3.9,Medium
+bot306,scheduled,71.38,2.87,in progress,61,15,user11,22-01-2023 16:50,v1.3,High
+bot307,scheduled,68.57,3.3,pending,73,43,user15,12-01-2023 02:54,v1.8,High
+bot308,user activated,91.74,5.34,successfully ran,193,17,user8,09-02-2023 09:19,v3.6,High
+bot309,user activated,75.65,4.42,in progress,239,14,user15,30-01-2023 11:54,v4.3,Critical
+bot310,scheduled,100,10.1,successfully ran,375,34,user12,16-01-2023 14:48,v5.8,High
+bot311,scheduled,81.02,4.31,pending,452,29,user9,17-02-2023 04:58,v5.6,Low
+bot312,user activated,87.11,8.68,failed,471,18,user12,13-02-2023 11:44,v5.9,Low
+bot313,scheduled,66.49,7.8,pending,346,8,user17,26-01-2023 06:03,v4.5,Critical
+bot314,scheduled,64.82,9.27,in progress,467,2,user15,31-01-2023 21:03,v5.0,Critical
+bot315,user activated,67.74,1.17,pending,439,9,user14,29-01-2023 01:48,v3.5,Low
+bot316,scheduled,65.6,7.72,pending,361,8,user17,26-01-2023 11:12,v4.5,Critical
+bot317,scheduled,74.14,1.18,pending,357,13,user2,06-01-2023 11:18,v4.1,Low
+bot318,scheduled,62.21,5.16,pending,52,26,user5,19-01-2023 12:05,v2.1,Medium
+bot319,scheduled,87.4,1.43,in progress,242,26,user7,01-01-2023 09:08,v1.5,Medium
+bot320,user activated,63.43,2.44,successfully ran,137,37,user10,01-01-2023 13:29,v1.8,Critical
+bot321,user activated,96.17,7.11,successfully ran,383,20,user13,28-01-2023 13:06,v5.8,Medium
+bot322,user activated,78.6,1.4,pending,57,5,user3,09-02-2023 18:14,v2.1,Medium
+bot323,user activated,75.53,4.6,in progress,247,20,user15,29-01-2023 19:04,v4.3,Critical
+bot324,scheduled,85.59,1.18,in progress,235,24,user7,01-01-2023 06:40,v1.5,Medium
+bot325,scheduled,87.18,1.49,in progress,233,27,user7,01-01-2023 15:59,v1.5,Medium
+bot326,user activated,83.52,4.24,failed,142,57,user6,15-02-2023 11:42,v1.7,Low
+bot327,scheduled,89.56,6,in progress,407,0,user16,27-01-2023 16:15,v2.4,High
+bot328,user activated,89.32,1.29,successfully ran,136,9,user19,12-02-2023 15:28,v1.1,Critical
+bot329,scheduled,81,4.13,pending,451,30,user9,17-02-2023 00:48,v5.6,Low
+bot330,user activated,100,5.27,failed,288,12,user19,17-02-2023 21:10,v4.9,Low
+bot331,scheduled,62.63,5.98,failed,424,30,user16,31-12-2022 12:30,v1.0,Low
+bot332,user activated,83.81,7.53,in progress,32,45,user16,10-01-2023 10:26,v5.7,Critical
+bot333,scheduled,86.7,1.23,in progress,240,38,user7,01-01-2023 03:00,v1.5,Medium
+bot334,user activated,72.37,5.64,successfully ran,172,17,user15,27-01-2023 01:19,v5.5,Low
+bot335,scheduled,71.43,3.24,in progress,58,23,user11,22-01-2023 01:36,v1.3,High
+bot336,scheduled,72.99,2.13,failed,55,35,user10,14-02-2023 14:12,v1.2,Critical
+bot337,scheduled,99.15,9.82,successfully ran,365,19,user12,16-01-2023 07:05,v5.8,High
+bot338,scheduled,62.32,2.15,successfully ran,241,29,user12,04-02-2023 03:44,v2.3,High
+bot339,scheduled,98.2,9.85,successfully ran,357,21,user12,16-01-2023 06:41,v5.8,High
+bot340,user activated,71.27,7.69,pending,269,5,user18,03-02-2023 05:09,v5.0,Critical
+bot341,scheduled,63.38,3.39,successfully ran,125,12,user11,27-01-2023 16:40,v5.8,Medium
+bot342,user activated,75.54,1.2,in progress,214,8,user2,06-02-2023 20:57,v1.4,Critical
+bot343,user activated,96.5,7.29,successfully ran,382,24,user13,28-01-2023 23:45,v5.8,Medium
+bot344,scheduled,93.3,4.98,pending,364,15,user6,09-01-2023 05:48,v1.6,Low
+bot345,user activated,91.32,0.88,in progress,445,38,user6,19-01-2023 13:06,v5.7,Medium
+bot346,scheduled,67.77,2.68,pending,80,46,user15,12-01-2023 05:55,v1.8,High
+bot347,user activated,70.56,2.61,successfully ran,19,2,user16,03-02-2023 22:16,v1.1,High
+bot348,user activated,80.41,5.58,in progress,312,41,user10,18-02-2023 09:34,v3.0,Medium
+bot349,scheduled,62.83,2.13,successfully ran,244,19,user12,04-02-2023 07:33,v2.3,High
+bot350,scheduled,76.11,7.57,successfully ran,204,20,user5,12-02-2023 05:02,v4.3,Medium
+bot351,scheduled,94.79,6.82,successfully ran,249,9,user17,06-01-2023 00:46,v4.0,High
+bot352,user activated,64.74,6.5,pending,27,39,user17,08-01-2023 09:36,v5.4,High
+bot353,user activated,98.76,5.22,failed,301,5,user19,17-02-2023 17:56,v4.9,Low
+bot354,scheduled,83.77,7.13,failed,173,15,user9,05-02-2023 17:03,v1.2,Low
+bot355,user activated,75.53,4.54,in progress,256,8,user15,30-01-2023 01:00,v4.3,Critical
+bot356,scheduled,63.2,2.3,successfully ran,232,21,user12,04-02-2023 07:53,v2.3,High
+bot357,user activated,92.53,5.7,failed,328,41,user10,09-02-2023 22:22,v3.2,High
+bot358,user activated,77.44,5.12,pending,164,34,user20,15-02-2023 23:35,v1.8,Critical
+bot359,user activated,64.1,2.5,successfully ran,129,22,user10,01-01-2023 22:59,v1.8,Critical
+bot360,scheduled,95.62,7.47,successfully ran,170,21,user4,10-01-2023 23:57,v3.2,Critical
+bot361,user activated,76.57,4.77,in progress,247,21,user15,30-01-2023 09:59,v4.3,Critical
+bot362,user activated,66.51,9.43,pending,160,17,user13,18-01-2023 16:03,v4.1,Medium
+bot363,user activated,83.95,7.52,in progress,37,28,user16,10-01-2023 07:08,v5.7,Critical
+bot364,scheduled,74.79,2.15,failed,59,39,user10,14-02-2023 04:02,v1.2,Critical
+bot365,user activated,91.95,2.49,in progress,347,12,user17,03-02-2023 11:56,v4.2,Medium
+bot366,user activated,84.62,7.74,in progress,43,44,user16,10-01-2023 07:56,v5.7,Critical
+bot367,scheduled,95.77,7.04,successfully ran,171,36,user4,10-01-2023 14:26,v3.2,Critical
+bot368,scheduled,79.3,4.11,pending,437,32,user9,17-02-2023 00:53,v5.6,Low
+bot369,user activated,64.89,2.87,failed,287,6,user9,05-02-2023 06:07,v5.1,Medium
+bot370,scheduled,65.05,7.48,pending,354,15,user17,26-01-2023 01:17,v4.5,Critical
+bot371,scheduled,75.88,2.08,in progress,418,29,user17,17-01-2023 00:10,v4.5,Critical
+bot372,user activated,63.08,5.26,in progress,340,34,user12,20-01-2023 19:39,v1.6,Low
+bot373,scheduled,62.1,4.99,pending,49,17,user5,19-01-2023 18:36,v2.1,Medium
+bot374,user activated,73.05,7.54,failed,455,20,user7,10-02-2023 09:03,v1.5,High
+bot375,scheduled,64.15,5.88,failed,421,18,user16,01-01-2023 05:06,v1.0,Low
+bot376,scheduled,93.89,6.82,successfully ran,244,0,user17,05-01-2023 13:40,v4.0,High
+bot377,user activated,83.83,4.35,failed,136,51,user6,15-02-2023 20:31,v1.7,Low
+bot378,user activated,76.01,2.44,in progress,126,55,user8,29-01-2023 07:36,v5.3,Medium
+bot379,user activated,89.41,9.4,successfully ran,194,21,user18,14-02-2023 10:13,v3.7,Low
+bot380,scheduled,89.04,1.89,successfully ran,239,14,user1,25-01-2023 20:59,v3.7,Critical
+bot381,user activated,89.75,4.01,successfully ran,245,7,user2,12-01-2023 01:57,v4.6,High
+bot382,scheduled,73.45,7.68,pending,25,15,user7,16-01-2023 08:11,v2.4,Critical
+bot383,user activated,69.99,5.36,pending,258,31,user13,16-02-2023 17:33,v5.5,Low
+bot384,user activated,68.82,8.35,successfully ran,351,31,user2,21-01-2023 13:00,v3.5,Low
+bot385,scheduled,63.85,9.7,failed,468,10,user13,18-02-2023 16:31,v1.4,Low
+bot386,user activated,98.22,4.66,successfully ran,344,38,user8,04-01-2023 11:12,v3.8,Critical
+bot387,user activated,64.39,6.77,pending,30,30,user17,08-01-2023 20:07,v5.4,High
+bot388,scheduled,74.68,2.41,failed,63,32,user10,14-02-2023 03:50,v1.2,Critical
+bot389,scheduled,71.2,8.86,pending,385,43,user8,30-01-2023 09:17,v1.0,High
+bot390,scheduled,86.88,1.23,in progress,237,30,user7,01-01-2023 12:49,v1.5,Medium
+bot391,scheduled,63.14,5.89,failed,425,25,user16,31-12-2022 20:54,v1.0,Low
+bot392,user activated,99.86,1.31,pending,389,15,user2,24-01-2023 09:14,v5.6,High
+bot393,scheduled,74.76,1.25,pending,353,28,user2,06-01-2023 00:57,v4.1,Low
+bot394,user activated,70.86,2.61,successfully ran,11,17,user16,04-02-2023 02:24,v1.1,High
+bot395,scheduled,62.26,2.82,successfully ran,275,39,user1,18-01-2023 22:40,v2.5,High
+bot396,scheduled,99.54,9.96,successfully ran,366,32,user12,16-01-2023 00:55,v5.8,High
+bot397,user activated,90.95,5.91,pending,215,10,user17,04-01-2023 22:31,v3.2,High
+bot398,scheduled,64.25,9.55,failed,474,0,user13,18-02-2023 18:53,v1.4,Low
+bot399,user activated,83.19,7.46,in progress,31,32,user16,10-01-2023 00:19,v5.7,Critical
+bot400,user activated,98.44,1.3,pending,390,14,user2,24-01-2023 09:12,v5.6,High
+bot401,user activated,92.54,5.77,failed,320,56,user10,09-02-2023 18:21,v3.2,High
+bot402,user activated,64.41,2.65,successfully ran,137,35,user10,01-01-2023 12:14,v1.8,Critical
+bot403,scheduled,95.12,7.25,successfully ran,172,29,user4,10-01-2023 13:35,v3.2,Critical
+bot404,scheduled,67.97,2.81,pending,83,36,user15,12-01-2023 22:20,v1.8,High
+bot405,scheduled,89.78,6.12,in progress,408,0,user16,27-01-2023 17:08,v2.4,High
+bot406,scheduled,76.23,2.13,in progress,420,42,user17,16-01-2023 21:55,v4.5,Critical
+bot407,scheduled,68.82,2.94,pending,78,42,user15,12-01-2023 12:44,v1.8,High
+bot408,user activated,76.03,1.1,in progress,216,0,user2,07-02-2023 09:15,v1.4,Critical
+bot409,scheduled,91.6,8.81,pending,297,10,user2,05-02-2023 15:55,v2.1,High
+bot410,user activated,65.67,8.97,pending,159,4,user13,18-01-2023 22:40,v4.1,Medium
+bot411,user activated,91.79,0.92,in progress,438,29,user6,19-01-2023 12:33,v5.7,Medium
+bot412,user activated,88.12,4.45,failed,135,49,user11,11-02-2023 16:43,v4.2,Critical
+bot413,scheduled,63.98,9.68,failed,466,2,user13,19-02-2023 02:14,v1.4,Low
+bot414,user activated,89.03,9.61,successfully ran,197,30,user18,13-02-2023 23:21,v3.7,Low
+bot415,scheduled,64.02,9.8,failed,483,11,user13,19-02-2023 05:30,v1.4,Low
+bot416,scheduled,86.04,9.2,failed,375,24,user1,12-01-2023 13:06,v3.4,Medium
+bot417,user activated,76.17,5.28,pending,166,30,user20,15-02-2023 19:59,v1.8,Critical
+bot418,user activated,93.19,1.15,in progress,351,36,user16,09-01-2023 12:59,v5.0,Medium
+bot419,user activated,72.3,8.05,failed,468,13,user7,10-02-2023 20:57,v1.5,High
+bot420,scheduled,83.52,2.58,failed,125,8,user15,02-02-2023 04:44,v3.2,Medium
+bot421,scheduled,90.18,5.94,in progress,408,11,user16,27-01-2023 05:37,v2.4,High
+bot422,user activated,75.39,8.09,pending,208,25,user15,18-01-2023 08:26,v5.7,Critical
+bot423,user activated,92.24,5.77,failed,337,58,user10,09-02-2023 13:46,v3.2,High
+bot424,user activated,86.44,1.88,in progress,487,11,user17,31-01-2023 06:03,v4.0,High
+bot425,user activated,95.81,9.49,in progress,441,42,user12,20-01-2023 19:25,v4.0,Critical
+bot426,scheduled,94.42,0.97,pending,217,34,user15,19-02-2023 23:22,v4.1,Medium
+bot427,scheduled,76.28,2.06,in progress,420,30,user17,17-01-2023 06:55,v4.5,Critical
+bot428,user activated,70.64,7.46,pending,279,8,user18,03-02-2023 02:25,v5.0,Critical
+bot429,scheduled,77.44,1.83,in progress,403,46,user17,17-01-2023 07:14,v4.5,Critical
+bot430,scheduled,77.82,3.42,pending,82,7,user20,07-01-2023 11:29,v2.6,Low
+bot431,user activated,64.78,2.19,pending,469,32,user2,10-01-2023 22:02,v4.4,High
+bot432,user activated,99.99,1.32,pending,391,23,user2,24-01-2023 02:58,v5.6,High
+bot433,scheduled,95.55,7.16,successfully ran,169,20,user4,10-01-2023 01:33,v3.2,Critical
+bot434,user activated,90.09,9.3,pending,300,53,user7,04-01-2023 01:21,v2.4,Low
+bot435,user activated,98.92,4.37,successfully ran,357,44,user8,04-01-2023 06:02,v3.8,Critical
+bot436,user activated,91.51,2.59,in progress,339,0,user17,02-02-2023 14:41,v4.2,Medium
+bot437,scheduled,94.6,4.9,pending,364,8,user6,09-01-2023 05:25,v1.6,Low
+bot438,scheduled,76.41,1.99,in progress,413,29,user17,16-01-2023 16:46,v4.5,Critical
+bot439,user activated,98.39,1.45,pending,388,13,user2,24-01-2023 13:11,v5.6,High
+bot440,user activated,98.9,4.01,successfully ran,446,20,user16,07-02-2023 20:31,v5.1,Medium
+bot441,user activated,76.16,4.83,in progress,246,8,user15,29-01-2023 17:53,v4.3,Critical
+bot442,scheduled,75.55,7.95,successfully ran,206,14,user5,12-02-2023 09:11,v4.3,Medium
+bot443,scheduled,73.04,0.41,successfully ran,193,33,user10,11-01-2023 16:16,v3.5,High
+bot444,scheduled,100,5.93,successfully ran,29,15,user14,15-01-2023 06:19,v2.4,High
+bot445,user activated,91.62,0.72,in progress,430,33,user6,19-01-2023 20:02,v5.7,Medium
+bot446,user activated,88.85,4.3,failed,239,8,user16,26-01-2023 07:54,v3.9,Medium
+bot447,scheduled,91.08,5.86,in progress,414,0,user16,27-01-2023 10:22,v2.4,High
+bot448,user activated,92.05,9.32,pending,312,42,user7,04-01-2023 04:57,v2.4,Low
+bot449,scheduled,93.15,3.26,pending,464,56,user9,13-01-2023 18:12,v4.9,Medium
+bot450,scheduled,91.93,3.23,pending,469,43,user9,13-01-2023 13:56,v4.9,Medium
+bot451,user activated,81.54,5.57,in progress,316,51,user10,18-02-2023 13:06,v3.0,Medium
+bot452,user activated,65.19,2.07,pending,458,30,user2,10-01-2023 18:48,v4.4,High
+bot453,scheduled,99.84,6.19,successfully ran,22,24,user14,15-01-2023 22:38,v2.4,High
+bot454,user activated,99.99,5.36,failed,301,7,user19,18-02-2023 07:42,v4.9,Low
+bot455,user activated,83.53,9.42,successfully ran,10,22,user1,14-01-2023 01:32,v3.2,Critical
+bot456,scheduled,97.58,7.59,pending,271,41,user3,01-02-2023 04:52,v4.3,Medium
+bot457,user activated,98.99,5.15,failed,295,17,user19,17-02-2023 14:47,v4.9,Low
+bot458,user activated,71.32,2.63,successfully ran,10,7,user16,03-02-2023 12:37,v1.1,High
+bot459,user activated,86.92,1.44,in progress,482,23,user17,30-01-2023 15:53,v4.0,High
+bot460,user activated,99.35,1.18,pending,396,20,user2,24-01-2023 03:08,v5.6,High
+bot461,user activated,83.32,7.8,in progress,30,39,user16,09-01-2023 18:22,v5.7,Critical
+bot462,user activated,72.81,9.92,in progress,418,4,user15,02-01-2023 19:47,v3.0,Medium
+bot463,user activated,75.37,8.04,pending,212,25,user15,17-01-2023 23:20,v5.7,Critical
+bot464,scheduled,97.92,7.43,pending,280,39,user3,01-02-2023 10:15,v4.3,Medium
+bot465,user activated,76.44,0.91,successfully ran,226,19,user4,25-01-2023 07:44,v2.4,Low
+bot466,scheduled,93.91,4.82,pending,355,13,user6,09-01-2023 09:31,v1.6,Low
+bot467,scheduled,70.47,2.93,in progress,48,14,user11,22-01-2023 21:46,v1.3,High
+bot468,user activated,83.25,4.12,failed,151,56,user6,15-02-2023 16:05,v1.7,Low
+bot469,scheduled,100,6.37,successfully ran,13,27,user14,15-01-2023 00:08,v2.4,High
+bot470,user activated,76.88,5.13,pending,166,41,user20,15-02-2023 23:02,v1.8,Critical
+bot471,scheduled,75.04,2.1,pending,400,29,user11,23-01-2023 15:48,v4.4,Low
+bot472,scheduled,89.75,6.2,pending,242,7,user7,03-01-2023 01:35,v2.1,Low
+bot473,scheduled,64.28,9.67,failed,467,0,user13,19-02-2023 03:39,v1.4,Low
+bot474,scheduled,63.02,2.73,successfully ran,271,41,user1,18-01-2023 14:52,v2.5,High
+bot475,scheduled,69.54,2.75,pending,76,35,user15,12-01-2023 12:05,v1.8,High
+bot476,user activated,77.16,4.98,pending,163,30,user20,15-02-2023 16:21,v1.8,Critical
+bot477,scheduled,75.52,2.44,pending,403,28,user11,23-01-2023 14:14,v4.4,Low
+bot478,user activated,73.2,5.55,successfully ran,174,4,user15,26-01-2023 15:59,v5.5,Low
+bot479,user activated,89.85,1.97,successfully ran,66,27,user3,17-02-2023 04:33,v3.9,Low
+bot480,scheduled,64.05,9.52,failed,469,0,user13,19-02-2023 07:24,v1.4,Low
+bot481,scheduled,71.16,9.1,pending,382,47,user8,30-01-2023 00:09,v1.0,High
+bot482,user activated,100,5.07,failed,295,4,user19,18-02-2023 05:26,v4.9,Low
+bot483,scheduled,81.94,9.51,in progress,361,14,user14,31-01-2023 15:17,v3.2,Critical
+bot484,scheduled,84.14,3.09,in progress,499,47,user16,12-02-2023 04:19,v1.8,High
+bot485,scheduled,98.58,9.94,successfully ran,362,21,user12,16-01-2023 09:18,v5.8,High
+bot486,user activated,89.26,1.41,successfully ran,129,3,user19,13-02-2023 05:58,v1.1,Critical
+bot487,scheduled,76.59,2.13,in progress,420,47,user17,16-01-2023 14:56,v4.5,Critical
+bot488,user activated,90.07,2.39,in progress,340,0,user17,03-02-2023 05:38,v4.2,Medium
+bot489,user activated,94.35,1.1,in progress,343,17,user16,09-01-2023 17:30,v5.0,Medium
+bot490,scheduled,85.18,9.51,failed,379,30,user1,13-01-2023 09:59,v3.4,Medium
+bot491,user activated,90.89,1.98,successfully ran,64,28,user3,17-02-2023 02:16,v3.9,Low
+bot492,scheduled,90.68,6.25,in progress,406,9,user16,27-01-2023 06:35,v2.4,High
+bot493,user activated,67.96,1.37,pending,449,15,user14,29-01-2023 12:20,v3.5,Low
+bot494,user activated,91.74,2.65,in progress,356,0,user17,03-02-2023 01:03,v4.2,Medium
+bot495,scheduled,75.55,2.16,pending,394,25,user11,23-01-2023 12:00,v4.4,Low
+bot496,scheduled,67.96,2.82,pending,79,35,user15,12-01-2023 23:34,v1.8,High
+bot497,scheduled,99.11,9.98,successfully ran,359,25,user12,16-01-2023 17:19,v5.8,High
+bot498,scheduled,92.66,2.63,successfully ran,231,10,user6,24-01-2023 00:37,v3.7,Low
+bot499,scheduled,75.12,7.61,successfully ran,202,22,user5,12-02-2023 12:53,v4.3,Medium
+bot500,user activated,89.52,4.17,successfully ran,259,18,user2,12-01-2023 10:53,v4.6,High
+bot501,scheduled,83.98,2.55,failed,136,0,user15,02-02-2023 11:49,v3.2,Medium
+bot502,scheduled,92.53,3.06,pending,463,45,user9,13-01-2023 17:27,v4.9,Medium
+bot503,scheduled,87.3,1.19,in progress,232,36,user7,01-01-2023 11:33,v1.5,Medium
+bot504,scheduled,75.01,2.23,failed,68,35,user10,14-02-2023 12:14,v1.2,Critical
+bot505,scheduled,94.24,4.99,pending,359,14,user6,09-01-2023 02:58,v1.6,Low
+bot506,scheduled,76.8,2.02,in progress,413,41,user17,17-01-2023 05:22,v4.5,Critical
+bot507,user activated,90.72,5.9,pending,207,16,user17,05-01-2023 00:59,v3.2,High
+bot508,user activated,83.04,8.32,failed,351,51,user15,21-01-2023 17:08,v5.5,Critical
+bot509,user activated,98.75,1.03,pending,393,16,user2,24-01-2023 07:28,v5.6,High
+bot510,scheduled,63.04,4.84,pending,60,20,user5,20-01-2023 11:40,v2.1,Medium
+bot511,user activated,76.83,5.03,pending,164,33,user20,16-02-2023 10:42,v1.8,Critical
+bot512,user activated,68.78,8.68,successfully ran,359,39,user2,21-01-2023 01:15,v3.5,Low
+bot513,user activated,85.77,7.9,successfully ran,97,14,user9,13-01-2023 05:13,v2.1,Critical
+bot514,scheduled,64.46,9.57,failed,470,0,user13,18-02-2023 22:15,v1.4,Low
+bot515,scheduled,89.59,1.93,successfully ran,241,9,user1,25-01-2023 22:23,v3.7,Critical
+bot516,scheduled,85.85,9.27,failed,363,38,user1,12-01-2023 14:27,v3.4,Medium
+bot517,scheduled,68.74,2.76,pending,67,30,user15,12-01-2023 06:53,v1.8,High
+bot518,user activated,66.58,7.96,pending,142,0,user4,07-01-2023 02:46,v5.9,Low
+bot519,scheduled,72.01,9.08,pending,387,48,user8,30-01-2023 17:07,v1.0,High
+bot520,user activated,98.2,4.34,successfully ran,354,48,user8,03-01-2023 20:34,v3.8,Critical
+bot521,user activated,75.74,2.29,in progress,117,46,user8,29-01-2023 09:57,v5.3,Medium
+bot522,user activated,65.96,9.1,pending,171,13,user13,18-01-2023 07:27,v4.1,Medium
+bot523,user activated,84.08,9.58,successfully ran,444,12,user9,22-01-2023 22:01,v5.5,High
+bot524,scheduled,96.19,7.39,successfully ran,168,19,user4,10-01-2023 09:40,v3.2,Critical
+bot525,user activated,99.07,3.66,successfully ran,242,19,user5,01-02-2023 12:21,v3.8,Medium
+bot526,user activated,90.73,9.15,pending,310,57,user7,04-01-2023 23:48,v2.4,Low
+bot527,user activated,63.69,6.44,pending,27,26,user17,08-01-2023 06:26,v5.4,High
+bot528,scheduled,78.92,3.18,pending,82,13,user20,07-01-2023 07:17,v2.6,Low
+bot529,user activated,99.29,3.83,successfully ran,450,12,user16,07-02-2023 01:09,v5.1,Medium
+bot530,user activated,88.44,1.35,successfully ran,145,6,user19,13-02-2023 11:12,v1.1,Critical
+bot531,scheduled,71.18,9.28,in progress,406,0,user4,08-01-2023 02:27,v5.5,Medium
+bot532,user activated,84.65,4.37,failed,148,52,user6,15-02-2023 07:21,v1.7,Low
+bot533,user activated,80.62,5.62,in progress,328,56,user10,18-02-2023 01:37,v3.0,Medium
+bot534,scheduled,83.06,2.76,failed,135,0,user15,02-02-2023 13:33,v3.2,Medium
+bot535,scheduled,99.14,9.88,successfully ran,360,31,user12,16-01-2023 13:08,v5.8,High
+bot536,user activated,89.29,1.47,successfully ran,134,19,user19,13-02-2023 00:16,v1.1,Critical
+bot537,scheduled,81,9.39,in progress,370,14,user14,01-02-2023 09:36,v3.2,Critical
+bot538,scheduled,75.97,7.86,successfully ran,216,12,user5,12-02-2023 23:25,v4.3,Medium
+bot539,user activated,87.15,3.96,failed,240,20,user16,25-01-2023 16:07,v3.9,Medium
+bot540,scheduled,85.12,9.24,failed,368,41,user1,13-01-2023 07:09,v3.4,Medium
+bot541,user activated,67.53,1.23,pending,458,10,user14,29-01-2023 06:37,v3.5,Low
+bot542,scheduled,81.18,9.56,in progress,376,6,user14,31-01-2023 22:04,v3.2,Critical
+bot543,scheduled,65.8,9.41,in progress,466,0,user15,31-01-2023 23:07,v5.0,Critical
+bot544,scheduled,74.27,0.55,successfully ran,200,32,user10,11-01-2023 08:58,v3.5,High
+bot545,user activated,67.34,1.4,pending,444,11,user14,29-01-2023 23:35,v3.5,Low
+bot546,user activated,67.64,1.32,pending,456,21,user14,29-01-2023 11:08,v3.5,Low
+bot547,scheduled,75.19,7.41,successfully ran,212,30,user5,12-02-2023 12:59,v4.3,Medium
+bot548,user activated,75.65,1.03,successfully ran,226,14,user4,24-01-2023 17:02,v2.4,Low
+bot549,scheduled,64.92,7.66,pending,356,0,user17,26-01-2023 02:32,v4.5,Critical
+bot550,user activated,69.22,8.47,successfully ran,358,24,user2,21-01-2023 16:30,v3.5,Low
+bot551,scheduled,62.84,2.26,successfully ran,249,24,user12,04-02-2023 07:19,v2.3,High
+bot552,scheduled,69.97,9.22,in progress,401,1,user4,07-01-2023 22:35,v5.5,Medium
+bot553,scheduled,89.15,5.86,in progress,401,13,user16,27-01-2023 20:32,v2.4,High
+bot554,scheduled,71.32,9.22,pending,382,40,user8,30-01-2023 14:42,v1.0,High
+bot555,user activated,99.77,5.15,failed,290,11,user19,17-02-2023 15:48,v4.9,Low
+bot556,user activated,89.81,9.09,pending,314,42,user7,04-01-2023 23:31,v2.4,Low
+bot557,user activated,72.19,5.69,successfully ran,173,4,user15,27-01-2023 03:03,v5.5,Low
+bot558,scheduled,70.22,8.91,pending,373,37,user8,30-01-2023 01:24,v1.0,High
+bot559,scheduled,75.82,8.28,pending,439,58,user16,03-01-2023 09:53,v4.0,Medium
+bot560,user activated,71.01,7.55,pending,276,20,user18,03-02-2023 13:44,v5.0,Critical
+bot561,scheduled,90.14,6.12,pending,231,0,user7,03-01-2023 05:20,v2.1,Low
+bot562,scheduled,80.9,4.24,pending,441,20,user9,17-02-2023 10:56,v5.6,Low
+bot563,user activated,69.81,5.51,pending,266,28,user13,16-02-2023 04:49,v5.5,Low
+bot564,scheduled,93.34,2.51,successfully ran,236,0,user6,24-01-2023 02:07,v3.7,Low
+bot565,scheduled,65.06,9.47,failed,483,6,user13,19-02-2023 01:26,v1.4,Low
+bot566,scheduled,64.7,3.25,successfully ran,129,0,user11,27-01-2023 16:01,v5.8,Medium
+bot567,user activated,64.48,5.56,in progress,335,37,user12,20-01-2023 01:27,v1.6,Low
+bot568,scheduled,65.92,7.53,pending,352,12,user17,26-01-2023 04:52,v4.5,Critical
+bot569,user activated,63.79,6.15,pending,38,34,user17,08-01-2023 09:15,v5.4,High
+bot570,user activated,66.32,7.91,pending,157,0,user4,06-01-2023 21:11,v5.9,Low
+bot571,scheduled,99.84,6.16,successfully ran,19,11,user14,15-01-2023 05:55,v2.4,High
+bot572,user activated,82.87,7.52,in progress,30,37,user16,10-01-2023 00:02,v5.7,Critical
+bot573,scheduled,94.83,4.87,pending,363,22,user6,08-01-2023 17:20,v1.6,Low
+bot574,scheduled,81.89,9.2,in progress,364,13,user14,31-01-2023 19:51,v3.2,Critical
+bot575,user activated,82.93,7.81,in progress,45,40,user16,09-01-2023 19:41,v5.7,Critical
+bot576,user activated,83,3.95,failed,139,49,user6,15-02-2023 11:02,v1.7,Low
+bot577,user activated,66.34,1.38,pending,446,15,user14,29-01-2023 21:33,v3.5,Low
+bot578,scheduled,64.64,3.55,successfully ran,125,0,user11,28-01-2023 02:18,v5.8,Medium
+bot579,scheduled,74.08,2.51,failed,61,34,user10,14-02-2023 04:02,v1.2,Critical
+bot580,scheduled,73.89,2.46,failed,61,37,user10,14-02-2023 04:28,v1.2,Critical
+bot581,scheduled,65.8,9.18,in progress,464,7,user15,31-01-2023 03:14,v5.0,Critical
+bot582,user activated,89.55,3.82,successfully ran,257,23,user2,11-01-2023 14:22,v4.6,High
+bot583,user activated,90.79,6.12,pending,215,14,user17,04-01-2023 21:45,v3.2,High
+bot584,scheduled,75.12,1.16,pending,362,15,user2,06-01-2023 23:38,v4.1,Low
+bot585,scheduled,63.22,5.96,failed,430,27,user16,31-12-2022 22:20,v1.0,Low
+bot586,user activated,67.78,1.56,pending,447,27,user14,29-01-2023 14:34,v3.5,Low
+bot587,scheduled,62.9,5.68,failed,433,30,user16,01-01-2023 06:22,v1.0,Low
+bot588,user activated,80.73,8.27,successfully ran,122,40,user11,17-01-2023 09:38,v5.9,High
+bot589,scheduled,80.99,4.28,pending,443,19,user9,17-02-2023 08:24,v5.6,Low
+bot590,user activated,98.78,1.16,pending,394,12,user2,24-01-2023 04:49,v5.6,High
+bot591,user activated,89.56,9.99,successfully ran,197,35,user18,14-02-2023 01:15,v3.7,Low
+bot592,scheduled,64.17,6.24,failed,422,23,user16,31-12-2022 23:24,v1.0,Low
+bot593,user activated,63.87,6.76,pending,39,39,user17,08-01-2023 07:06,v5.4,High
+bot594,user activated,86.79,1.55,in progress,480,19,user17,31-01-2023 03:35,v4.0,High
+bot595,scheduled,97.04,7.88,pending,274,28,user3,01-02-2023 03:22,v4.3,Medium
+bot596,scheduled,81.38,9.5,in progress,372,3,user14,01-02-2023 07:40,v3.2,Critical
+bot597,user activated,71.53,2.5,successfully ran,5,2,user16,03-02-2023 15:52,v1.1,High
+bot598,scheduled,72.5,0.72,successfully ran,206,49,user10,11-01-2023 11:50,v3.5,High
+bot599,user activated,77.88,5.13,pending,160,40,user20,16-02-2023 03:39,v1.8,Critical
+bot600,user activated,91.16,2.14,in progress,350,4,user17,03-02-2023 11:40,v4.2,Medium
+bot601,user activated,99.73,4.18,successfully ran,448,29,user16,07-02-2023 09:08,v5.1,Medium
+bot602,user activated,86.34,7.74,successfully ran,115,3,user9,13-01-2023 17:59,v2.1,Critical
+bot603,user activated,63.78,6.4,pending,40,27,user17,08-01-2023 01:26,v5.4,High
+bot604,user activated,87.61,4.35,failed,237,25,user16,26-01-2023 03:18,v3.9,Medium
+bot605,scheduled,75.78,7.82,successfully ran,216,23,user5,12-02-2023 13:05,v4.3,Medium
+bot606,user activated,74.49,2.45,in progress,113,46,user8,29-01-2023 03:23,v5.3,Medium
+bot607,scheduled,92.21,7.64,failed,348,10,user9,15-01-2023 04:59,v4.9,Low
+bot608,user activated,61.59,1.71,in progress,374,6,user9,08-02-2023 17:16,v3.1,Low
+bot609,user activated,84.2,4.25,failed,138,47,user6,15-02-2023 22:15,v1.7,Low
+bot610,user activated,70.66,2.47,successfully ran,11,12,user16,04-02-2023 06:39,v1.1,High
+bot611,scheduled,93.5,2.63,successfully ran,229,4,user6,23-01-2023 19:03,v3.7,Low
+bot612,user activated,69.76,5.6,pending,266,33,user13,16-02-2023 21:54,v5.5,Low
+bot613,scheduled,65.41,9.54,in progress,462,0,user15,31-01-2023 04:17,v5.0,Critical
+bot614,user activated,71.45,2.36,successfully ran,23,11,user16,04-02-2023 10:40,v1.1,High
+bot615,user activated,99.92,4.09,successfully ran,449,19,user16,07-02-2023 00:04,v5.1,Medium
+bot616,user activated,64.48,6.48,pending,24,26,user17,08-01-2023 22:23,v5.4,High
+bot617,scheduled,73.95,2.56,failed,68,39,user10,14-02-2023 07:52,v1.2,Critical
+bot618,scheduled,72.66,2.44,failed,59,25,user10,14-02-2023 06:56,v1.2,Critical
+bot619,user activated,99.07,1.19,pending,403,26,user2,24-01-2023 12:14,v5.6,High
+bot620,scheduled,83.54,2.95,in progress,499,35,user16,12-02-2023 01:17,v1.8,High
+bot621,scheduled,61.86,4.99,pending,55,11,user5,20-01-2023 09:07,v2.1,Medium
+bot622,scheduled,93.94,0.78,pending,221,22,user15,19-02-2023 02:41,v4.1,Medium
+bot623,scheduled,77.51,2.02,in progress,418,44,user17,17-01-2023 01:48,v4.5,Critical
+bot624,user activated,69.91,5.28,pending,259,23,user13,16-02-2023 09:43,v5.5,Low
+bot625,user activated,90.74,4.06,successfully ran,255,12,user2,12-01-2023 04:13,v4.6,High
+bot626,scheduled,66.82,2.86,failed,478,42,user17,05-01-2023 05:47,v3.0,Critical
+bot627,user activated,70.42,2.5,successfully ran,11,19,user16,04-02-2023 01:28,v1.1,High
+bot628,scheduled,94.82,0.63,pending,224,28,user15,19-02-2023 08:49,v4.1,Medium
+bot629,user activated,80.48,8.11,successfully ran,130,40,user11,17-01-2023 16:09,v5.9,High
+bot630,scheduled,66.32,7.54,pending,345,5,user17,26-01-2023 00:00,v4.5,Critical
+bot631,user activated,89.04,2.35,successfully ran,55,12,user3,17-02-2023 05:32,v3.9,Low
+bot632,scheduled,66.56,2.73,failed,480,43,user17,05-01-2023 14:10,v3.0,Critical
+bot633,user activated,82.47,7.61,in progress,43,39,user16,09-01-2023 20:07,v5.7,Critical
+bot634,user activated,67.08,1.13,pending,443,25,user14,29-01-2023 12:36,v3.5,Low
+bot635,scheduled,80.11,4.38,pending,444,27,user9,17-02-2023 04:25,v5.6,Low
+bot636,scheduled,62.73,5.93,failed,416,31,user16,01-01-2023 05:59,v1.0,Low
+bot637,user activated,71.22,2.51,successfully ran,5,4,user16,04-02-2023 07:25,v1.1,High
+bot638,user activated,73.19,9.82,in progress,415,0,user15,02-01-2023 16:48,v3.0,Medium
+bot639,user activated,63.68,6.45,pending,29,27,user17,08-01-2023 14:53,v5.4,High
+bot640,scheduled,68.62,3.01,pending,81,32,user15,12-01-2023 07:34,v1.8,High
+bot641,user activated,93.25,5.44,failed,327,39,user10,09-02-2023 01:04,v3.2,High
+bot642,scheduled,85.52,1.25,in progress,230,35,user7,01-01-2023 08:20,v1.5,Medium
+bot643,user activated,82.81,4.11,failed,147,40,user6,15-02-2023 08:51,v1.7,Low
+bot644,scheduled,99.36,9.88,successfully ran,362,19,user12,16-01-2023 03:17,v5.8,High
+bot645,scheduled,94.47,2.59,pending,16,43,user15,15-02-2023 09:50,v2.3,Medium
+bot646,user activated,88.25,4.15,failed,135,58,user11,11-02-2023 04:48,v4.2,Critical
+bot647,scheduled,68.49,2.96,pending,70,41,user15,12-01-2023 07:31,v1.8,High
+bot648,scheduled,74.54,0.93,pending,346,25,user2,06-01-2023 11:30,v4.1,Low
+bot649,scheduled,90.3,1.76,successfully ran,237,13,user1,25-01-2023 08:36,v3.7,Critical
+bot650,user activated,76.59,8.13,pending,206,26,user15,18-01-2023 07:06,v5.7,Critical
+bot651,scheduled,76.33,2.25,in progress,413,47,user17,17-01-2023 04:26,v4.5,Critical
+bot652,scheduled,76.86,2.13,in progress,414,34,user17,16-01-2023 15:43,v4.5,Critical
+bot653,user activated,86.83,1.61,in progress,486,24,user17,31-01-2023 05:47,v4.0,High
+bot654,user activated,87.1,4.39,failed,227,7,user16,25-01-2023 23:01,v3.9,Medium
+bot655,user activated,82.8,7.75,failed,351,43,user15,21-01-2023 20:33,v5.5,Critical
+bot656,scheduled,74.77,1.12,pending,346,13,user2,06-01-2023 12:05,v4.1,Low
+bot657,user activated,92,2.56,in progress,347,10,user17,03-02-2023 00:47,v4.2,Medium
+bot658,user activated,98.16,3.36,successfully ran,250,20,user5,01-02-2023 20:37,v3.8,Medium
+bot659,scheduled,76.33,2.29,in progress,418,39,user17,16-01-2023 16:18,v4.5,Critical
+bot660,user activated,63.74,5.75,in progress,333,34,user12,20-01-2023 21:34,v1.6,Low
+bot661,scheduled,67.05,7.89,in progress,160,37,user11,06-02-2023 08:02,v4.1,Medium
+bot662,user activated,82.82,8.25,failed,332,53,user15,21-01-2023 14:47,v5.5,Critical
+bot663,scheduled,71.12,3.14,in progress,48,30,user11,22-01-2023 03:04,v1.3,High
+bot664,scheduled,92.94,7.92,failed,361,0,user9,15-01-2023 08:15,v4.9,Low
+bot665,user activated,65.27,7.71,pending,157,0,user4,06-01-2023 17:33,v5.9,Low
+bot666,scheduled,75.53,1,pending,353,20,user2,06-01-2023 23:24,v4.1,Low
+bot667,user activated,91.05,2.19,successfully ran,69,17,user3,16-02-2023 12:28,v3.9,Low
+bot668,scheduled,74.96,2.33,pending,396,24,user11,23-01-2023 02:25,v4.4,Low
+bot669,scheduled,87.17,1.42,in progress,225,32,user7,01-01-2023 21:06,v1.5,Medium
+bot670,user activated,76.27,8.13,pending,213,30,user15,18-01-2023 02:42,v5.7,Critical
+bot671,user activated,89.62,1.31,successfully ran,137,18,user19,12-02-2023 15:51,v1.1,Critical
+bot672,user activated,78.72,1.32,pending,59,4,user3,09-02-2023 12:34,v2.1,Medium
+bot673,scheduled,75.42,2.19,failed,62,39,user10,14-02-2023 09:37,v1.2,Critical
+bot674,user activated,89.96,9.16,pending,304,40,user7,04-01-2023 16:41,v2.4,Low
+bot675,user activated,77.2,5.13,pending,171,28,user20,16-02-2023 06:26,v1.8,Critical
+bot676,user activated,85.99,8.02,successfully ran,101,15,user9,13-01-2023 03:32,v2.1,Critical
+bot677,scheduled,66.15,7.76,in progress,147,19,user11,06-02-2023 21:15,v4.1,Medium
+bot678,scheduled,73.31,2.23,failed,54,24,user10,14-02-2023 16:12,v1.2,Critical
+bot679,user activated,81.27,8.25,successfully ran,125,37,user11,17-01-2023 14:06,v5.9,High
+bot680,user activated,97.94,4.29,successfully ran,349,39,user8,04-01-2023 00:05,v3.8,Critical
+bot681,user activated,71.36,7.59,pending,285,9,user18,03-02-2023 07:43,v5.0,Critical
+bot682,user activated,67.76,1.42,pending,440,12,user14,29-01-2023 19:31,v3.5,Low
+bot683,user activated,76.21,1.11,in progress,227,5,user2,06-02-2023 21:58,v1.4,Critical
+bot684,scheduled,92.39,7.62,failed,344,0,user9,15-01-2023 02:00,v4.9,Low
+bot685,user activated,65.77,9.21,pending,168,22,user13,18-01-2023 19:51,v4.1,Medium
+bot686,user activated,89.25,9.81,successfully ran,205,38,user18,14-02-2023 03:46,v3.7,Low
+bot687,user activated,64.44,2.33,pending,464,21,user2,10-01-2023 17:40,v4.4,High
+bot688,user activated,65.8,9.2,pending,163,18,user13,18-01-2023 12:10,v4.1,Medium
+bot689,scheduled,66.94,3.22,failed,467,55,user17,05-01-2023 02:00,v3.0,Critical
+bot690,scheduled,83.95,6.78,failed,171,1,user9,05-02-2023 18:14,v1.2,Low
+bot691,scheduled,68.64,2.91,pending,70,31,user15,12-01-2023 04:58,v1.8,High
+bot692,scheduled,97.71,7.57,pending,284,33,user3,01-02-2023 01:03,v4.3,Medium
+bot693,scheduled,64.51,9.63,failed,465,13,user13,19-02-2023 04:29,v1.4,Low
+bot694,user activated,76.16,0.87,successfully ran,214,19,user4,25-01-2023 09:53,v2.4,Low
+bot695,scheduled,63.94,9.45,failed,482,3,user13,18-02-2023 16:32,v1.4,Low
+bot696,user activated,65.63,9.07,pending,170,14,user13,18-01-2023 10:49,v4.1,Medium
+bot697,user activated,72.14,7.78,failed,463,8,user7,10-02-2023 10:04,v1.5,High
+bot698,scheduled,80.44,4.24,pending,438,18,user9,17-02-2023 19:10,v5.6,Low
+bot699,scheduled,68.19,2.58,pending,77,47,user15,12-01-2023 10:44,v1.8,High
+bot700,user activated,89.93,4.05,successfully ran,255,11,user2,11-01-2023 22:10,v4.6,High
+bot701,scheduled,65.87,9.39,in progress,467,12,user15,31-01-2023 04:48,v5.0,Critical
+bot702,scheduled,81.71,4.16,pending,447,15,user9,17-02-2023 06:41,v5.6,Low
+bot703,scheduled,62.68,2.74,successfully ran,273,46,user1,18-01-2023 22:33,v2.5,High
+bot704,scheduled,73.51,1.13,pending,358,21,user2,06-01-2023 09:28,v4.1,Low
+bot705,scheduled,63.86,3.59,successfully ran,127,8,user11,28-01-2023 00:24,v5.8,Medium
+bot706,user activated,66.49,7.8,pending,146,0,user4,06-01-2023 15:16,v5.9,Low
+bot707,user activated,89.95,4.37,successfully ran,257,5,user2,11-01-2023 13:30,v4.6,High
+bot708,user activated,89.7,10,successfully ran,202,25,user18,14-02-2023 05:42,v3.7,Low
+bot709,scheduled,64.21,9.39,failed,471,2,user13,19-02-2023 01:23,v1.4,Low
+bot710,scheduled,100,6.25,successfully ran,30,14,user14,15-01-2023 01:34,v2.4,High
+bot711,scheduled,94.24,4.9,pending,352,9,user6,08-01-2023 17:29,v1.6,Low
+bot712,scheduled,65.87,9.31,in progress,461,0,user15,31-01-2023 16:28,v5.0,Critical
+bot713,user activated,87.12,4.12,failed,134,43,user11,11-02-2023 04:22,v4.2,Critical
+bot714,user activated,89.7,9.77,successfully ran,191,20,user18,13-02-2023 22:20,v3.7,Low
+bot715,scheduled,75.29,7.59,successfully ran,203,16,user5,12-02-2023 19:20,v4.3,Medium
+bot716,user activated,65.33,7.77,pending,158,0,user4,06-01-2023 16:05,v5.9,Low
+bot717,user activated,75.98,4.58,in progress,257,11,user15,29-01-2023 18:57,v4.3,Critical
+bot718,user activated,82.29,7.63,in progress,36,26,user16,10-01-2023 02:18,v5.7,Critical
+bot719,user activated,76,0.75,successfully ran,218,26,user4,24-01-2023 17:46,v2.4,Low
+bot720,scheduled,93.81,0.84,pending,220,24,user15,19-02-2023 17:01,v4.1,Medium
+bot721,scheduled,74.36,1.21,pending,348,24,user2,06-01-2023 00:21,v4.1,Low
+bot722,user activated,87,1.75,in progress,477,26,user17,31-01-2023 00:48,v4.0,High
+bot723,user activated,82.76,7.39,in progress,41,44,user16,09-01-2023 19:54,v5.7,Critical
+bot724,user activated,99.8,4.2,successfully ran,454,22,user16,07-02-2023 13:45,v5.1,Medium
+bot725,user activated,90.87,5.86,pending,209,20,user17,05-01-2023 01:00,v3.2,High
+bot726,user activated,65.04,3.24,failed,293,8,user9,04-02-2023 21:18,v5.1,Medium
+bot727,user activated,84.73,9.7,successfully ran,24,35,user1,14-01-2023 02:29,v3.2,Critical
+bot728,user activated,61.08,1.5,in progress,384,0,user9,08-02-2023 16:55,v3.1,Low
+bot729,user activated,89.92,2.12,successfully ran,61,19,user3,17-02-2023 08:41,v3.9,Low
+bot730,scheduled,65.9,7.61,pending,346,6,user17,26-01-2023 06:42,v4.5,Critical
+bot731,scheduled,84.12,3.5,failed,302,17,user3,11-02-2023 05:02,v5.3,Critical
+bot732,user activated,63.76,6.59,pending,24,45,user17,08-01-2023 23:19,v5.4,High
+bot733,user activated,71.28,2.3,successfully ran,6,21,user16,04-02-2023 02:44,v1.1,High
+bot734,scheduled,64.79,9.35,failed,468,11,user13,19-02-2023 02:19,v1.4,Low
+bot735,scheduled,74.6,1.06,pending,351,12,user2,06-01-2023 14:54,v4.1,Low
+bot736,scheduled,86.89,9.46,failed,372,38,user1,12-01-2023 21:20,v3.4,Medium
+bot737,scheduled,65.71,7.46,pending,359,8,user17,26-01-2023 16:40,v4.5,Critical
+bot738,scheduled,82.77,3.24,in progress,486,53,user16,12-02-2023 04:45,v1.8,High
+bot739,scheduled,93.88,0.67,pending,220,26,user15,19-02-2023 22:45,v4.1,Medium
+bot740,user activated,72.11,5.41,successfully ran,165,7,user15,27-01-2023 08:32,v5.5,Low
+bot741,user activated,90.35,4.22,successfully ran,257,10,user2,12-01-2023 07:03,v4.6,High
+bot742,user activated,64.6,6.44,pending,26,39,user17,08-01-2023 18:40,v5.4,High
+bot743,user activated,74.85,2.55,in progress,125,57,user8,29-01-2023 07:47,v5.3,Medium
+bot744,scheduled,62.62,4.77,pending,48,9,user5,20-01-2023 04:02,v2.1,Medium
+bot745,user activated,72.41,5.75,successfully ran,157,1,user15,26-01-2023 18:26,v5.5,Low
+bot746,user activated,68.64,8.6,successfully ran,358,31,user2,21-01-2023 03:15,v3.5,Low
+bot747,user activated,66.98,1.15,pending,455,26,user14,29-01-2023 03:23,v3.5,Low
+bot748,scheduled,61.32,5.07,pending,55,15,user5,19-01-2023 23:18,v2.1,Medium
+bot749,scheduled,79.79,3.15,pending,82,17,user20,07-01-2023 17:09,v2.6,Low
+bot750,user activated,89.93,2.27,successfully ran,60,20,user3,17-02-2023 01:51,v3.9,Low
+bot751,scheduled,75.15,8.24,pending,441,59,user16,02-01-2023 12:03,v4.0,Medium
+bot752,user activated,77.34,8.12,pending,203,14,user15,17-01-2023 18:14,v5.7,Critical
+bot753,user activated,88.41,1.5,successfully ran,142,4,user19,13-02-2023 08:47,v1.1,Critical
+bot754,user activated,77.73,5.24,pending,170,34,user20,15-02-2023 13:42,v1.8,Critical
+bot755,user activated,75.87,1.5,in progress,214,0,user2,06-02-2023 22:40,v1.4,Critical
+bot756,user activated,92.86,0.95,in progress,342,26,user16,09-01-2023 21:41,v5.0,Medium
+bot757,user activated,99.64,4,successfully ran,451,13,user16,07-02-2023 20:02,v5.1,Medium
+bot758,user activated,89.8,5.8,pending,218,23,user17,05-01-2023 04:37,v3.2,High
+bot759,scheduled,66.56,7.99,in progress,152,18,user11,06-02-2023 11:30,v4.1,Medium
+bot760,user activated,67.1,1.18,pending,456,22,user14,29-01-2023 19:47,v3.5,Low
+bot761,scheduled,94.8,5.06,pending,360,12,user6,08-01-2023 18:12,v1.6,Low
+bot762,user activated,98.43,4.35,successfully ran,357,52,user8,03-01-2023 20:58,v3.8,Critical
+bot763,scheduled,75.82,2.15,pending,403,34,user11,23-01-2023 17:33,v4.4,Low
+bot764,user activated,65.56,7.9,pending,156,3,user4,06-01-2023 22:13,v5.9,Low
+bot765,user activated,64.82,5.47,in progress,329,30,user12,20-01-2023 08:59,v1.6,Low
+bot766,user activated,69.92,8.65,successfully ran,365,29,user2,21-01-2023 07:46,v3.5,Low
+bot767,user activated,89.31,6.09,pending,213,18,user17,04-01-2023 12:25,v3.2,High
+bot768,scheduled,90.15,1.62,successfully ran,237,15,user1,25-01-2023 13:11,v3.7,Critical
+bot769,scheduled,92.69,3.23,pending,475,53,user9,13-01-2023 19:49,v4.9,Medium
+bot770,scheduled,83.61,2.61,failed,131,11,user15,02-02-2023 17:05,v3.2,Medium
+bot771,scheduled,76.07,8.35,pending,451,56,user16,02-01-2023 23:12,v4.0,Medium
+bot772,scheduled,93.31,7.51,failed,344,9,user9,15-01-2023 11:07,v4.9,Low
+bot773,scheduled,63.4,2.75,successfully ran,265,44,user1,19-01-2023 10:52,v2.5,High
+bot774,user activated,90.33,1.04,in progress,442,44,user6,19-01-2023 19:10,v5.7,Medium
+bot775,scheduled,83.14,3.89,failed,289,11,user3,10-02-2023 22:48,v5.3,Critical
+bot776,user activated,89.98,9.26,pending,309,54,user7,04-01-2023 22:24,v2.4,Low
+bot777,user activated,99.03,3.51,successfully ran,258,26,user5,02-02-2023 11:24,v3.8,Medium
+bot778,scheduled,76.43,7.85,successfully ran,210,26,user5,12-02-2023 17:37,v4.3,Medium
+bot779,scheduled,95.52,4.83,pending,361,12,user6,08-01-2023 22:29,v1.6,Low
+bot780,user activated,65.03,2.91,failed,278,3,user9,04-02-2023 23:23,v5.1,Medium
+bot781,user activated,88.86,9.8,successfully ran,189,34,user18,13-02-2023 19:12,v3.7,Low
+bot782,user activated,84.7,9.84,successfully ran,430,18,user9,22-01-2023 17:16,v5.5,High
+bot783,user activated,71.72,9.97,in progress,414,10,user15,02-01-2023 15:52,v3.0,Medium
+bot784,user activated,66.6,9.1,pending,172,22,user13,18-01-2023 05:06,v4.1,Medium
+bot785,scheduled,62.87,2.46,successfully ran,244,25,user12,04-02-2023 10:45,v2.3,High
+bot786,scheduled,72.72,7.76,pending,22,28,user7,16-01-2023 07:53,v2.4,Critical
+bot787,user activated,83.17,7.71,in progress,33,27,user16,10-01-2023 03:48,v5.7,Critical
+bot788,user activated,86.48,1.86,in progress,483,12,user17,30-01-2023 20:34,v4.0,High
+bot789,scheduled,90.18,5.91,in progress,403,3,user16,27-01-2023 02:29,v2.4,High
+bot790,scheduled,62.21,5.26,pending,59,18,user5,20-01-2023 09:00,v2.1,Medium
+bot791,scheduled,95.53,2.76,pending,12,42,user15,15-02-2023 07:53,v2.3,Medium
+bot792,scheduled,66.43,7.75,in progress,159,35,user11,06-02-2023 03:06,v4.1,Medium
+bot793,scheduled,73.51,2.27,failed,61,27,user10,14-02-2023 13:58,v1.2,Critical
+bot794,user activated,83.23,7.19,in progress,34,34,user16,09-01-2023 17:07,v5.7,Critical
+bot795,scheduled,62.5,5.15,pending,42,20,user5,20-01-2023 00:38,v2.1,Medium
+bot796,user activated,91.84,2.32,in progress,350,14,user17,03-02-2023 07:39,v4.2,Medium
+bot797,user activated,83.78,9.8,successfully ran,436,7,user9,23-01-2023 08:04,v5.5,High
+bot798,user activated,65.46,8.01,pending,146,0,user4,07-01-2023 07:52,v5.9,Low
+bot799,user activated,83.35,4.26,failed,145,52,user6,15-02-2023 00:47,v1.7,Low
+bot800,user activated,67.05,1.22,pending,443,26,user14,29-01-2023 04:30,v3.5,Low

@@ -1,0 +1,422 @@
+import React, {useEffect, useState} from 'react'
+import { getSummary, getPredictions, getBotAnalysis } from '../api'
+import PerformanceMetrics from '../components/PerformanceMetrics'
+import { 
+  Box, 
+  Paper, 
+  Typography, 
+  Grid, 
+  CircularProgress, 
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  LinearProgress,
+  Button
+} from '@mui/material'
+import ErrorIcon from '@mui/icons-material/Error'
+import RecommendIcon from '@mui/icons-material/Recommend'
+import AssessmentIcon from '@mui/icons-material/Assessment'
+
+export default function Summary(){
+  const [data, setData] = useState(null)
+  const [bots, setBots] = useState([])
+  const [selectedUser, setSelectedUser] = useState('')
+  const [selectedAnalysisUser, setSelectedAnalysisUser] = useState('')
+  const [analyses, setAnalyses] = useState({})
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    let m = true;
+    setLoading(true);
+    setError(null);
+
+    // Define default data structure
+    const defaultData = {
+      total_runs: 0,
+      total_failures: 0,
+      global_success_rate: 0,
+      bots_with_critical_priority: 0,
+      users: []
+    };
+
+    // Define default bot structure
+    const defaultBot = {
+      bot_name: '',
+      owner: '',
+      risk_score: 0,
+      predicted_failure: false
+    };
+
+    const fetchData = async () => {
+      try {
+        // Fetch summary and predictions in parallel
+        const [summaryRes, predictionsRes] = await Promise.all([
+          getSummary(selectedUser),
+          getPredictions()
+        ]);
+
+        if (!m) return;
+
+        // Set summary data with fallback to defaults
+        if (summaryRes && summaryRes.summary) {
+          setData({
+            ...defaultData,
+            ...summaryRes.summary
+          });
+          setUsers(summaryRes.summary.users || []);
+        } else {
+          console.warn('Invalid summary data structure, using defaults');
+          setData(defaultData);
+        }
+
+        // Set predictions data with fallback to defaults
+        if (predictionsRes && Array.isArray(predictionsRes.predictions)) {
+          const formattedBots = predictionsRes.predictions.map(bot => ({
+            ...defaultBot,
+            ...bot,
+            success_rate: bot.success_rate || 0,
+            run_count: bot.total_runs || 0,
+            failure_count: bot.predicted_failure ? 1 : 0,
+            owner: bot.owner || 'Unknown'
+          }));
+          setBots(formattedBots);
+        } else {
+          console.warn('Invalid predictions data structure, using defaults');
+          setBots([]);
+        }
+
+        setError(null);
+      } catch (err) {
+        console.error('Failed to fetch data:', err);
+        if (m) {
+          setError('Failed to load data. Please try refreshing the page.');
+          setData(defaultData);
+          setBots([]);
+        }
+      } finally {
+        if (m) setLoading(false);
+      }
+    };
+
+    fetchData();
+    return () => m = false;
+  }, [selectedUser]);
+
+  // Effect for fetching analysis data for selected user's bots
+  useEffect(() => {
+    if (!selectedAnalysisUser && selectedAnalysisUser !== '') return;
+    
+    let m = true;
+    setLoading(true);
+    setError(null);
+    
+    const fetchAnalyses = async () => {
+      try {
+        const userBots = bots.filter(bot => !selectedAnalysisUser || bot.owner === selectedAnalysisUser);
+        const analysisPromises = userBots.map(bot => getBotAnalysis(bot.bot_name));
+        const results = await Promise.all(analysisPromises);
+        
+        if (!m) return;
+        
+        const analysisMap = {};
+        userBots.forEach((bot, index) => {
+          analysisMap[bot.bot_name] = results[index];
+        });
+        
+        setAnalyses(analysisMap);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to fetch analyses:', err);
+        if (m) {
+          setError('Failed to load analysis data. Please try again.');
+          setAnalyses({});
+        }
+      } finally {
+        if (m) setLoading(false);
+      }
+    };
+
+    fetchAnalyses();
+    return () => m = false;
+  }, [selectedAnalysisUser, bots]);
+
+  if(!data && loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <CircularProgress size={60} />
+      </Box>
+    );
+  }
+
+  if(error) {
+    return (
+      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="100vh">
+        <Typography color="error" variant="h6" gutterBottom>
+          {error}
+        </Typography>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          onClick={() => window.location.reload()}
+          sx={{ mt: 2 }}
+        >
+          Retry
+        </Button>
+      </Box>
+    );
+  }
+
+  if(!data) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <Typography variant="h6" color="text.secondary">
+          No data available. Please try again later.
+        </Typography>
+      </Box>
+    );
+  }
+  
+  // Ensure we have data and bots before rendering
+  const hasSummaryData = data && typeof data === 'object';
+  const hasBotsData = Array.isArray(bots) && bots.length > 0;
+
+  return (
+    <Box sx={{ p: 3 }}>
+      <Box sx={{ mb: 4 }}>
+        <Typography 
+          variant="h4" 
+          sx={{
+            background: 'linear-gradient(45deg, #4f46e5 30%, #818cf8 90%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            mb: 3
+          }}
+        >
+          Summary Analytics
+        </Typography>
+        
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+          <FormControl sx={{ width: '400px' }}>
+            <InputLabel sx={{ fontSize: '1.1rem' }}>Select User</InputLabel>
+            <Select
+              value={selectedUser}
+              onChange={(e) => setSelectedUser(e.target.value)}
+              label="Select User"
+              sx={{
+                height: '56px',
+                fontSize: '1.1rem',
+                '& .MuiSelect-select': {
+                  padding: '14px'
+                }
+              }}
+            >
+              <MenuItem value="" sx={{ fontSize: '1.1rem' }}>All Users</MenuItem>
+              {users.map(user => (
+                <MenuItem key={user} value={user} sx={{ fontSize: '1.1rem' }}>
+                  {user}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
+
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid item xs={12} sm={6} md={2}>
+          <Paper sx={{ 
+            p: 3, 
+            background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+            color: 'white',
+            textAlign: 'center'
+          }}>
+            <Typography variant="h6">Total Runs</Typography>
+            <Typography variant="h3">{hasSummaryData ? data.total_runs || 0 : 0}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2}>
+          <Paper sx={{ 
+            p: 3, 
+            background: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
+            color: 'white',
+            textAlign: 'center'
+          }}>
+            <Typography variant="h6">Total Failures</Typography>
+            <Typography variant="h3">{hasSummaryData ? data.total_failures || 0 : 0}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2}>
+          <Paper sx={{ 
+            p: 3, 
+            background: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+            color: 'white',
+            textAlign: 'center'
+          }}>
+            <Typography variant="h6">Success Rate</Typography>
+            <Typography variant="h3">{hasSummaryData ? (data.global_success_rate || 0).toFixed(1) : '0.0'}%</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2}>
+          <Paper sx={{ 
+            p: 3, 
+            background: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',
+            color: 'white',
+            textAlign: 'center'
+          }}>
+            <Typography variant="h6">Critical Bots</Typography>
+            <Typography variant="h3">{hasSummaryData ? data.bots_with_critical_priority || 0 : 0}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2}>
+          <Paper sx={{ 
+            p: 3, 
+            background: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+            color: 'white',
+            textAlign: 'center'
+          }}>
+            <Typography variant="h6">Anomalies</Typography>
+            <Typography variant="h3">{hasSummaryData ? data.total_anomalies || 0 : 0}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={2}>
+          <Paper sx={{ 
+            p: 3, 
+            background: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
+            color: 'white',
+            textAlign: 'center'
+          }}>
+            <Typography variant="h6">High Risk</Typography>
+            <Typography variant="h3">{hasSummaryData ? data.high_risk_anomalies || 0 : 0}</Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper sx={{ 
+            p: 3, 
+            background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)',
+            color: 'white',
+            height: '100%'
+          }}>
+            <Typography variant="h6" gutterBottom>AI Failure Analysis Report</Typography>
+
+            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+              <FormControl sx={{ width: '400px' }}>
+                <InputLabel sx={{ color: 'rgba(255,255,255,0.7)' }}>Select User for Analysis</InputLabel>
+                <Select
+                  value={selectedAnalysisUser}
+                  onChange={(e) => setSelectedAnalysisUser(e.target.value)}
+                  label="Select User for Analysis"
+                  sx={{
+                    color: 'white',
+                    '.MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(255,255,255,0.3)' },
+                    '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(255,255,255,0.6)' },
+                    '.MuiSvgIcon-root': { color: 'white' },
+                    height: '56px',
+                    fontSize: '1.1rem'
+                  }}
+                >
+                  <MenuItem value="" sx={{ fontSize: '1.1rem' }}>All Users</MenuItem>
+                  {users.map(user => (
+                    <MenuItem key={user} value={user} sx={{ fontSize: '1.1rem' }}>
+                      {user}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+
+            {loading ? (
+              <Box sx={{ width: '100%' }}>
+                <LinearProgress />
+              </Box>
+            ) : (
+              <Box>
+                {hasBotsData ? (
+                  bots
+                    .filter(bot => !selectedAnalysisUser || bot.owner === selectedAnalysisUser)
+                    .map((bot, index) => (
+                      <Paper key={bot.bot_name || index} sx={{ p: 2, mb: 2, bgcolor: 'rgba(255,255,255,0.1)' }}>
+                        <Typography variant="h6" sx={{ color: 'white', mb: 2 }}>
+                          {bot.bot_name}
+                        </Typography>
+                        
+                        <Typography variant="subtitle1" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: bot.risk_score >= 0.7 ? '#ef4444' : bot.risk_score >= 0.4 ? '#f59e0b' : '#10b981' }}>
+                          <ErrorIcon /> {bot.risk_score >= 0.7 ? 'HIGH RISK' : bot.risk_score >= 0.4 ? 'MEDIUM RISK' : 'LOW RISK'}
+                        </Typography>
+
+                        <Typography variant="body2" sx={{ mt: 1, color: 'white' }}>
+                          Risk Score: {((bot.risk_score || 0) * 100).toFixed(1)}%
+                        </Typography>
+
+                        {analyses[bot.bot_name] && (
+                          <>
+                            <Box sx={{ mt: 2 }}>
+                              <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1, color: 'white' }}>
+                                <AssessmentIcon /> Performance Metrics:
+                              </Typography>
+                              <Box sx={{ pl: 4 }}>
+                                <Typography variant="body2" sx={{ color: 'white' }}>
+                                  • Success Rate: {analyses[bot.bot_name].success_rate?.toFixed(1) || '0.0'}%
+                                </Typography>
+                                <Typography variant="body2" sx={{ color: 'white' }}>
+                                  • Total Runs: {analyses[bot.bot_name].total_runs || 0}
+                                </Typography>
+                                <Typography variant="body2" sx={{ color: 'white' }}>
+                                  • Failure Count: {analyses[bot.bot_name].total_failures || 0}
+                                </Typography>
+                              </Box>
+                            </Box>
+
+                            {analyses[bot.bot_name].contributing_factors && (
+                              <Box sx={{ mt: 2 }}>
+                                <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1, color: 'white' }}>
+                                  <AssessmentIcon /> Contributing Factors:
+                                </Typography>
+                                <Box sx={{ pl: 4 }}>
+                                  {analyses[bot.bot_name].contributing_factors.map((factor, idx) => (
+                                    <Typography key={idx} variant="body2" sx={{ color: 'white' }}>
+                                      • {factor}
+                                    </Typography>
+                                  ))}
+                                </Box>
+                              </Box>
+                            )}
+
+                            {analyses[bot.bot_name].recommendations && (
+                              <Box sx={{ mt: 2 }}>
+                                <Typography variant="subtitle2" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1, color: '#ef4444' }}>
+                                  <RecommendIcon /> Recommended Actions:
+                                </Typography>
+                                <Box sx={{ pl: 4 }}>
+                                  {analyses[bot.bot_name].recommendations.map((rec, idx) => (
+                                    <Typography key={idx} variant="body2" sx={{ color: 'white' }}>
+                                      • {rec}
+                                    </Typography>
+                                  ))}
+                                </Box>
+                              </Box>
+                            )}
+                          </>
+                        )}
+                      </Paper>
+                    ))
+                ) : (
+                  <Box sx={{ textAlign: 'center', color: 'white' }}>
+                    <Typography variant="h6">No bots available for analysis</Typography>
+                    <Typography variant="body1">Please try refreshing the page or select a different user.</Typography>
+                  </Box>
+                )}
+              </Box>
+            )}
+          </Paper>
+        </Grid>
+      </Grid>
+    </Box>
+  )
+}
