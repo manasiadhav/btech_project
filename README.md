@@ -123,4 +123,198 @@ A comprehensive dashboard for monitoring, analyzing, and managing RPA (Robotic P
 
 ## 🚀 Getting Started
 
-[Rest of the README content remains the same...]
+### System Requirements
+
+#### Minimum Hardware Requirements
+- CPU: Dual-core processor or better
+- RAM: 4GB minimum (8GB recommended)
+- Storage: 1GB free space
+- Internet Connection: Required for npm packages and Python dependencies
+
+#### Software Prerequisites
+1. **Python Environment**
+   - Python 3.12.6 or later
+   - pip (Python package manager)
+   - virtualenv or venv module
+
+2. **Node.js Environment**
+   - Node.js 14.x or later
+   - npm 6.x or later
+
+3. **Database**
+   - SQLite (included)
+
+4. **Git**
+   - Latest version
+
+### Step-by-Step Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/ARYABARAI30123/RPA-Bot-Monitoring-System.git
+   cd RPA-Bot-Monitoring-System
+   ```
+
+2. **Backend Setup**
+   ```bash
+   # Navigate to backend directory
+   cd backend
+
+   # Create and activate virtual environment
+   # For Windows:
+   python -m venv .venv
+   .venv\Scripts\activate
+
+   # For Linux/Mac:
+   python -m venv .venv
+   source .venv/bin/activate
+
+   # Install dependencies
+   pip install -r requirements.txt
+
+   # Initialize the database
+   python init_db.py
+
+   # Start the Flask server
+   python run.py
+   ```
+
+   The backend server will start on http://localhost:5000
+
+3. **Frontend Setup**
+   ```bash
+   # Open a new terminal
+   cd frontend
+
+   # Install dependencies
+   npm install
+
+   # Start the development server
+   npm run dev
+   ```
+
+   The frontend application will be available at http://localhost:5173
+
+### Verification Steps
+
+1. **Check Backend Health**
+   ```bash
+   curl http://localhost:5000/api/health
+   ```
+   Should return: `{"status": "healthy"}`
+
+2. **Verify Frontend**
+   - Open http://localhost:5173 in your browser
+   - You should see the login page or dashboard
+
+3. **Test Database Connection**
+   - Navigate to http://localhost:5173/analytics
+   - Verify that bot data is loading
+
+### Common Issues and Solutions
+
+1. **Port Conflicts**
+   - If port 5000 is in use:
+     ```bash
+     # In backend/config.py, change the port
+     PORT = 5001  # or any available port
+     ```
+   - If port 5173 is in use:
+     ```bash
+     # Start frontend with different port
+     npm run dev -- --port 3000
+     ```
+
+2. **Python Dependencies**
+   If you encounter dependency conflicts:
+   ```bash
+   pip install --upgrade -r requirements.txt
+   ```
+
+3. **Node Modules Issues**
+   If you face npm errors:
+   ```bash
+   rm -rf node_modules
+   npm cache clean --force
+   npm install
+   ```
+
+### Development Setup
+
+1. **VS Code Extensions**
+   - Python
+   - Pylance
+   - ES7+ React/Redux/React-Native snippets
+   - ESLint
+   - Prettier
+
+2. **Environment Configuration**
+   - Copy `.env.example` to `.env` in frontend directory
+   - Update API URLs if needed
+
+3. **Database Management**
+   - Default SQLite database is in `backend/database/bot_monitoring.db`
+   - To reset database:
+     ```bash
+     cd backend
+     python reset_db.py
+     ```
+
+### Running Tests
+
+1. **Backend Tests**
+   ```bash
+   cd backend
+   python -m pytest tests/
+   ```
+
+2. **Frontend Tests**
+   ```bash
+   cd frontend
+   npm test
+   ```
+
+### Updating the Application
+
+1. **Pull Latest Changes**
+   ```bash
+   git pull origin main
+   ```
+
+2. **Update Dependencies**
+   ```bash
+   # Backend
+   cd backend
+   pip install -r requirements.txt
+
+   # Frontend
+   cd frontend
+   npm install
+   ```
+
+### Support and Troubleshooting
+
+If you encounter any issues:
+1. Check the logs in `backend/logs/app.log`
+2. Verify all services are running:
+   ```bash
+   # Check backend
+   curl http://localhost:5000/api/health
+
+   # Check frontend (should see output in browser console)
+   curl http://localhost:5173
+   ```
+3. Open an issue on GitHub with:
+   - Error message
+   - Steps to reproduce
+   - System information
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+For detailed contribution guidelines, see CONTRIBUTING.md
