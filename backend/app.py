@@ -82,7 +82,11 @@ def load_data():
                     try:
                         row['Last Run Timestamp'] = datetime.strptime(str(ts), '%Y-%m-%d %H:%M')
                     except Exception:
-                        row['Last Run Timestamp'] = None
+                        try:
+                            # Support DD-MM-YYYY HH:MM format present in CSV
+                            row['Last Run Timestamp'] = datetime.strptime(str(ts), '%d-%m-%Y %H:%M')
+                        except Exception:
+                            row['Last Run Timestamp'] = None
                 records.append(row)
     else:
         # fallback synthetic minimal data
