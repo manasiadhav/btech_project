@@ -59,6 +59,28 @@ def parse_int(val, default=0):
         except Exception:
             return default
 
+def to_datetime(ts):
+    if isinstance(ts, datetime):
+        return ts
+    if ts is None:
+        return None
+    s = str(ts)
+    # try iso with space replaced
+    try:
+        return datetime.fromisoformat(s.replace(' ', 'T'))
+    except Exception:
+        pass
+    # try YYYY-MM-DD HH:MM
+    try:
+        return datetime.strptime(s, '%Y-%m-%d %H:%M')
+    except Exception:
+        pass
+    # try DD-MM-YYYY HH:MM
+    try:
+        return datetime.strptime(s, '%d-%m-%Y %H:%M')
+    except Exception:
+        return None
+
 def load_data():
     records = []
     if os.path.exists(DATA_PATH):
@@ -154,7 +176,7 @@ def overview():
     owner = request.args.get('owner')
 
     def within_date(rec):
-        ts = rec.get('Last Run Timestamp')
+        ts = to_datetime(rec.get('Last Run Timestamp'))
         if not ts:
             return False
         if start_date:
@@ -190,7 +212,7 @@ def overview():
     # time series by day
     by_day = {}
     for r in filtered:
-        ts = r.get('Last Run Timestamp')
+        ts = to_datetime(r.get('Last Run Timestamp'))
         if not ts:
             continue
         day = ts.date().isoformat()
@@ -230,11 +252,15 @@ def errors():
         recent = [r for r in filtered if r.get('Last Run Timestamp')]
         recent.sort(key=lambda x: x.get('Last Run Timestamp'), reverse=True)
         recent = recent[:20]
-        # convert datetimes to strings
+        # convert datetimes to strings without mutating shared DATA
+        recent_out = []
         for r in recent:
-            if isinstance(r.get('Last Run Timestamp'), datetime):
-                r['Last Run Timestamp'] = r['Last Run Timestamp'].isoformat(sep=' ')
-        return jsonify({'failure_by_status': by_status, 'recent': recent, 'users': users, 'selected_user': selected_user})
+            ts = to_datetime(r.get('Last Run Timestamp'))
+            ts_str = ts.isoformat(sep=' ') if isinstance(ts, datetime) else (str(r.get('Last Run Timestamp')) if r.get('Last Run Timestamp') is not None else None)
+            rr = dict(r)
+            rr['Last Run Timestamp'] = ts_str
+            recent_out.append(rr)
+        return jsonify({'failure_by_status': by_status, 'recent': recent_out, 'users': users, 'selected_user': selected_user})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
@@ -249,7 +275,7 @@ def performance():
         })
     by_day = {}
     for r in DATA:
-        ts = r.get('Last Run Timestamp')
+        ts = to_datetime(r.get('Last Run Timestamp'))
         if not ts:
             continue
         d = ts.date().isoformat()
@@ -339,6 +365,14 @@ def summary():
     except Exception as e:
         return jsonify({'error': 'Failed to generate summary'}), 500
 
+@app.route('/api/users')
+def users():
+    try:
+        owners = sorted(list({str(r.get('Owner')) for r in DATA if r.get('Owner') is not None}))
+        return jsonify(owners)
+    except Exception:
+        return jsonify([])
+
 @app.route('/api/analytics/dashboard')
 def analytics():
     # Build analytics response expected by frontend (no pandas)
@@ -372,7 +406,7 @@ def analytics():
         daily_runs = {}
         daily_success = {}
         for r in records:
-            ts = r.get('Last Run Timestamp')
+            ts = to_datetime(r.get('Last Run Timestamp'))
             if not ts:
                 continue
             key = ts.date().isoformat()
@@ -409,7 +443,19 @@ def analytics():
         }
         return jsonify(response)
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        safe_response = {
+            'total_runs': 0,
+            'success_rate': 0,
+            'avg_execution_time': 0,
+            'total_errors': 0,
+            'users': [],
+            'userBots': {},
+            'status_distribution': {},
+            'daily_trends': {'Run Count': {}, 'Success Rate (%)': {}},
+            'risk_analysis': [],
+            'owner_insights': {'Bot Name': {}, 'Success Rate (%)': {}}
+        }
+        return jsonify(safe_response)
 
 
 
