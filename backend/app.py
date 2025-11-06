@@ -373,6 +373,28 @@ def users():
     except Exception:
         return jsonify([])
 
+@app.route('/api/dataset')
+def dataset():
+    try:
+        out = []
+        for r in DATA:
+            ts = to_datetime(r.get('Last Run Timestamp'))
+            out.append({
+                'Bot Name': r.get('Bot Name'),
+                'Bot Type': r.get('Bot Type', ''),
+                'Owner': r.get('Owner'),
+                'Run Count': parse_int(r.get('Run Count', 0)),
+                'Failure Count': parse_int(r.get('Failure Count', 0)),
+                'Success Rate (%)': parse_float(r.get('Success Rate (%)', 0)),
+                'Average Execution Time (s)': parse_float(r.get('Average Execution Time (s)', 0)),
+                'Last Status': r.get('Last Status', ''),
+                'Last Run Timestamp': ts.isoformat(sep=' ') if ts else None,
+                'Priority': r.get('Priority', '')
+            })
+        return jsonify({'rows': out, 'count': len(out)})
+    except Exception as e:
+        return jsonify({'rows': [], 'count': 0, 'error': str(e)})
+
 @app.route('/api/analytics/dashboard')
 def analytics():
     # Build analytics response expected by frontend (no pandas)

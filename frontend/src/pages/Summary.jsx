@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getSummary, getBotAnalysis } from '../api';
+// ML libs (client-side)
+import { RandomForestClassifier as RFClassifier } from 'ml-random-forest';
+import IsolationForest from 'isolation-forest';
+import React, { useEffect, useMemo, useState } from 'react';
+import { getSummary, getDataset } from '../api';
 import {
   Box,
   Paper,
@@ -42,6 +45,12 @@ const Summary = () => {
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [selectedUser, setSelectedUser] = useState('all');
 
+  // ML state
+  const [datasetRows, setDatasetRows] = useState([]);
+  const [mlLoading, setMlLoading] = useState(true);
+  const [mlError, setMlError] = useState(null);
+  const [enrichedByBot, setEnrichedByBot] = useState({});
+
   useEffect(() => {
     const fetchSummaryData = async () => {
       try {
@@ -79,23 +88,137 @@ const Summary = () => {
     fetchSummaryData();
   }, [selectedUser]);
 
+  // Fetch dataset and train client-side ML (RF + IF)
   useEffect(() => {
-    const fetchBotAnalysis = async () => {
-      if (!selectedBot) return;
-      
-      setAnalysisLoading(true);
+    const runML = async () => {
+      setMlLoading(true);
+      setMlError(null);
       try {
-        const analysis = await getBotAnalysis(selectedBot);
-        setBotAnalysis(analysis);
-      } catch (err) {
-        console.error('Error fetching bot analysis:', err);
+        const ds = await getDataset();
+        const rows = Array.isArray(ds?.rows) ? ds.rows : [];
+        setDatasetRows(rows);
+
+        // Build features
+        const X = [];
+        const y = [];
+        const names = [];
+        for (const r of rows) {
+          const runCount = Number(r['Run Count'] || 0);
+          const failureCount = Number(r['Failure Count'] || 0);
+          const successRate = Number(r['Success Rate (%)'] || 0);
+          const avgExec = Number(r['Average Execution Time (s)'] || 0);
+          const failureRate = runCount > 0 ? (failureCount / Math.max(1, runCount)) * 100 : 0;
+          X.push([runCount, failureCount, successRate, avgExec]);
+          y.push(failureRate > 20 ? 1 : 0);
+          names.push(String(r['Bot Name']));
+        }
+
+        // Train RandomForest classifier (votes -> probability)
+        let rfProb = new Array(X.length).fill(0.0);
+        try {
+          if (X.length > 0) {
+            const rf = new RFClassifier({
+              nEstimators: 200,
+              maxFeatures: 0.8,
+              seed: 42,
+              replacement: true,
+              useSampleBagging: true
+            });
+            rf.train(X, y);
+            // Approx probability via tree votes if available; fallback to predict labels
+            if (Array.isArray(rf.estimators_) && rf.estimators_.length) {
+              const trees = rf.estimators_;
+              const votes = new Array(X.length).fill(0);
+              for (const t of trees) {
+                const preds = t.predict(X);
+                preds.forEach((p, i) => { votes[i] += (p === 1 ? 1 : 0); });
+              }
+              rfProb = votes.map(v => v / trees.length);
+            } else {
+              const preds = rf.predict(X);
+              rfProb = preds.map(p => (p === 1 ? 0.7 : 0.3));
+            }
+          }
+        } catch (e) {
+          console.warn('RF training failed, falling back to heuristic risk:', e);
+          rfProb = X.map(v => {
+            const [runCount, failureCount, successRate, avgExec] = v;
+            const failureRate = runCount > 0 ? failureCount / Math.max(1, runCount) : 0;
+            const successImpact = (100 - successRate) / 100;
+            const execImpact = avgExec > 0 ? Math.min(1, avgExec / (2 * (avgExec || 1))) : 0;
+            return Math.max(0, Math.min(1, 0.5 * failureRate + 0.4 * successImpact + 0.1 * execImpact));
+          });
+        }
+
+        // Isolation Forest for anomaly detection on numeric signals
+        let anomalyScore = new Array(X.length).fill(0);
+        let isAnomaly = new Array(X.length).fill(false);
+        try {
+          if (X.length > 0) {
+            const iso = new IsolationForest({ nTrees: 200, sampleSize: Math.min(256, X.length), seed: 42 });
+            iso.fit(X);
+            const scores = iso.scores(); // higher = more anomalous
+            const threshold = 0.6; // conservative default
+            anomalyScore = scores;
+            isAnomaly = scores.map(s => s >= threshold);
+          }
+        } catch (e) {
+          console.warn('IsolationForest failed, defaulting to non-anomalous:', e);
+        }
+
+        // Build enriched map by bot name
+        const enriched = {};
+        rows.forEach((r, i) => {
+          const runCount = Number(r['Run Count'] || 0);
+          const failureCount = Number(r['Failure Count'] || 0);
+          const successRate = Number(r['Success Rate (%)'] || 0);
+          const failureRatePct = runCount > 0 ? (failureCount / Math.max(1, runCount)) * 100 : 0;
+          enriched[String(r['Bot Name'])] = {
+            name: String(r['Bot Name']),
+            owner: String(r['Owner'] || ''),
+            risk_probability: rfProb[i] || 0,
+            anomaly_score: anomalyScore[i] || 0,
+            is_anomalous: !!isAnomaly[i],
+            success_rate: successRate || 0,
+            failure_rate: failureRatePct || 0,
+            recent_failures: failureCount || 0,
+            recent_runs: runCount || 0
+          };
+        });
+
+        setEnrichedByBot(enriched);
+      } catch (e) {
+        setMlError(e?.message || 'Failed to run client-side ML');
       } finally {
-        setAnalysisLoading(false);
+        setMlLoading(false);
       }
     };
+    runML();
+  }, []);
 
-    fetchBotAnalysis();
-  }, [selectedBot]);
+  // When bot changes, derive analysis from enriched map (client-side ML)
+  useEffect(() => {
+    if (!selectedBot) return;
+    setAnalysisLoading(true);
+    const r = enrichedByBot[selectedBot];
+    if (r) {
+      setBotAnalysis({
+        risk_probability: r.risk_probability,
+        failure_rate: r.failure_rate,
+        recent_failures: r.recent_failures,
+        recent_runs: r.recent_runs,
+        success_rate: r.success_rate,
+        is_anomalous: r.is_anomalous,
+        anomaly_score: r.anomaly_score,
+        recommendations: [
+          'Investigate recent error logs and failure patterns',
+          'Schedule immediate maintenance and monitoring',
+          'Optimize execution time if consistently high'
+        ]
+      });
+    }
+    setAnalysisLoading(false);
+  }, [selectedBot, enrichedByBot]);
 
   if (loading) {
     return (
@@ -119,6 +242,15 @@ const Summary = () => {
   }
 
   console.log('Rendering Summary with data:', summaryData);
+
+  // Build risk-based dropdown groups from ML if available, else show basic list
+  const groupedOptions = useMemo(() => {
+    const bots = Object.values(enrichedByBot);
+    const high = bots.filter(b => b.risk_probability >= 0.8).map(b => b.name);
+    const med = bots.filter(b => b.risk_probability >= 0.5 && b.risk_probability < 0.8).map(b => b.name);
+    const low = bots.filter(b => b.risk_probability < 0.5).map(b => b.name);
+    return { high, med, low };
+  }, [enrichedByBot]);
 
   return (
     <Box p={3}>
@@ -193,25 +325,25 @@ const Summary = () => {
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: 'white' }
             }}
           >
-            {/* Group bots by risk level */}
+            {/* Group bots by ML risk level (client-side) */}
             <MenuItem value="" disabled>HIGH RISK BOTS</MenuItem>
-            {summaryData?.summary?.bots?.filter(bot => bot.risk_level === 'HIGH RISK').map((bot) => (
-              <MenuItem key={bot.id} value={bot.id} sx={{ color: '#ef4444' }}>{bot.name}</MenuItem>
+            {groupedOptions.high.map((name) => (
+              <MenuItem key={name} value={name} sx={{ color: '#ef4444' }}>{name}</MenuItem>
             ))}
-            
+
             <MenuItem value="" disabled sx={{ mt: 1 }}>MEDIUM RISK BOTS</MenuItem>
-            {summaryData?.summary?.bots?.filter(bot => bot.risk_level === 'MEDIUM RISK').map((bot) => (
-              <MenuItem key={bot.id} value={bot.id} sx={{ color: '#f59e0b' }}>{bot.name}</MenuItem>
+            {groupedOptions.med.map((name) => (
+              <MenuItem key={name} value={name} sx={{ color: '#f59e0b' }}>{name}</MenuItem>
             ))}
-            
+
             <MenuItem value="" disabled sx={{ mt: 1 }}>LOW RISK BOTS</MenuItem>
-            {summaryData?.summary?.bots?.filter(bot => bot.risk_level === 'LOW RISK').map((bot) => (
-              <MenuItem key={bot.id} value={bot.id} sx={{ color: '#10b981' }}>{bot.name}</MenuItem>
+            {groupedOptions.low.map((name) => (
+              <MenuItem key={name} value={name} sx={{ color: '#10b981' }}>{name}</MenuItem>
             ))}
           </Select>
         </FormControl>
 
-        {analysisLoading ? (
+        {analysisLoading || mlLoading ? (
           <Box display="flex" justifyContent="center" p={3}>
             <CircularProgress color="inherit" />
           </Box>
