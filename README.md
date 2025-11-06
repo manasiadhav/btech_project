@@ -28,7 +28,7 @@ A comprehensive dashboard for monitoring, analyzing, and managing RPA (Robotic P
 ## 📸 Dashboard Screenshots & Detailed Explanations
 
 ### 1. Overview Dashboard
-![Overview Dashboard](screenshots/overview.png)
+<img width="1836" height="862" alt="Screenshot 2025-11-04 154827" src="https://github.com/user-attachments/assets/214ce9d2-9a3c-4f86-bcd7-2750d5ce29ea" />
 
 **What's Happening in This View:**
 - **Top Filter Bar**: Comprehensive filtering options including:
@@ -49,7 +49,8 @@ A comprehensive dashboard for monitoring, analyzing, and managing RPA (Robotic P
 - **Filter Actions**: Apply/Reset buttons for data refinement
 
 ### 2. Analytics Dashboard
-![Analytics Dashboard](screenshots/analytics.png)
+
+<img width="1850" height="858" alt="Screenshot 2025-11-04 150835" src="https://github.com/user-attachments/assets/f241952f-6ad4-47b0-ab0c-d7f27246c82c" />
 
 **What's Happening in This View:**
 - **User Selection**: Dropdown showing 'user4' specific analysis
@@ -66,7 +67,8 @@ A comprehensive dashboard for monitoring, analyzing, and managing RPA (Robotic P
   - Total Errors: 18,036 incidents
 
 ### 3. Error Analysis & Logs
-![Error Analysis](screenshots/errors.png)
+
+<img width="1902" height="873" alt="Screenshot 2025-11-04 143144" src="https://github.com/user-attachments/assets/a8252be5-bbde-4baa-902b-05cbd75df721" />
 
 **What's Happening in This View:**
 - **Error Distribution Statistics**:
@@ -82,7 +84,8 @@ A comprehensive dashboard for monitoring, analyzing, and managing RPA (Robotic P
 - **Real-time Updates**: Live status tracking of bot executions
 
 ### 4. Performance Metrics
-![Performance Dashboard](screenshots/performance.png)
+<img width="1916" height="871" alt="Screenshot 2025-11-04 141447" src="https://github.com/user-attachments/assets/62d20f95-7698-4a0b-ab73-01f15df62167" />
+
 
 **What's Happening in This View:**
 - **Success Rate Trend Graph**:
@@ -96,7 +99,8 @@ A comprehensive dashboard for monitoring, analyzing, and managing RPA (Robotic P
 - **Historical Trend Analysis**: Year-long performance data visualization
 
 ### 5. Risk Analysis Dashboard
-![Risk Analysis](screenshots/risk.png)
+
+<img width="1601" height="823" alt="Screenshot 2025-11-04 182432" src="https://github.com/user-attachments/assets/badd0377-c663-4489-a6ee-c28424f59bf1" />
 
 **What's Happening in This View:**
 - **Bot Selection**: Analysis of bot600
@@ -123,6 +127,7 @@ A comprehensive dashboard for monitoring, analyzing, and managing RPA (Robotic P
 
 ## 🚀 Getting Started
 
+<<<<<<< HEAD
 ### System Requirements
 
 #### Minimum Hardware Requirements
@@ -318,3 +323,6 @@ If you encounter any issues:
 5. Create a Pull Request
 
 For detailed contribution guidelines, see CONTRIBUTING.md
+=======
+[Rest of the README content remains the same...]
+>>>>>>> 79b941abf8db96ef6ba425a278e3da571a5c3aa7
