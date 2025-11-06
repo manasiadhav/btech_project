@@ -1,6 +1,5 @@
 // ML libs (client-side)
 import { RandomForestClassifier as RFClassifier } from 'ml-random-forest';
-import IsolationForest from 'ml-isolation-forest';
 import React, { useEffect, useMemo, useState } from 'react';
 import { getSummary, getDataset } from '../api';
 import {
@@ -150,20 +149,29 @@ const Summary = () => {
           });
         }
 
-        // Isolation Forest for anomaly detection on numeric signals
         let anomalyScore = new Array(X.length).fill(0);
         let isAnomaly = new Array(X.length).fill(false);
-        try {
-          if (X.length > 0) {
-            const iso = new IsolationForest({ nTrees: 200, sampleSize: Math.min(256, X.length), seed: 42 });
-            iso.fit(X);
-            const scores = iso.scores(); // higher = more anomalous
-            const threshold = 0.6; // conservative default
-            anomalyScore = scores;
-            isAnomaly = scores.map(s => s >= threshold);
-          }
-        } catch (e) {
-          console.warn('IsolationForest failed, defaulting to non-anomalous:', e);
+        if (X.length > 0) {
+          const cols = X[0].length;
+          const colVals = Array.from({ length: cols }, (_, c) => X.map(r => r[c]));
+          const med = colVals.map(arr => {
+            const s = [...arr].sort((a,b)=>a-b);
+            const m = s[Math.floor(s.length/2)];
+            return m;
+          });
+          const mad = colVals.map((arr, c) => {
+            const m = med[c];
+            const dev = arr.map(v => Math.abs(v - m)).sort((a,b)=>a-b);
+            const mm = dev[Math.floor(dev.length/2)] || 1e-6;
+            return mm || 1e-6;
+          });
+          const scores = X.map(row => {
+            const zs = row.map((v, c) => 0.6745 * Math.abs(v - med[c]) / (mad[c] || 1e-6));
+            return zs.reduce((a,b)=>a+b,0) / zs.length;
+          });
+          const threshold = 3.5;
+          anomalyScore = scores;
+          isAnomaly = scores.map(s => s >= threshold);
         }
 
         // Build enriched map by bot name
