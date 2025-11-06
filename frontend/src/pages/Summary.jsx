@@ -1,6 +1,6 @@
 // ML libs (client-side)
 import { RandomForestClassifier as RFClassifier } from 'ml-random-forest';
-import IsolationForest from 'isolation-forest';
+import IsolationForest from 'ml-isolation-forest';
 import React, { useEffect, useMemo, useState } from 'react';
 import { getSummary, getDataset } from '../api';
 import {
